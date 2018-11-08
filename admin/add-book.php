@@ -33,6 +33,8 @@ else	//if logged in properly
 	$Location			=	$_POST['txtLocation'];
 	$Type				=	$_POST['txtType'];
 
+	
+
 	$sql="INSERT INTO librarybooks(ISBN,Barcode,Callnumber,Title,Subtitle,Author,
 		Edition,Publisher,Copyright,Physicaldesc,Series,Subject_1,Subject_2,Subject_3,
 		Subject_4,Location,Material,Status) VALUES(:ISBN,:Barcode,:Callnumber,:Title,:Subtitle,:Author,
@@ -220,9 +222,13 @@ Title
 
 <label>Author<span style="color:red;">*</span>	</label>
 
-<textarea class="form-control" placeholder="Author" type="comment" name="txtAuthor" 	autocomplete="off"  required />
-</textarea><br>
-
+<input class="form-control" placeholder="Author" type="text" name="txtAuthor" 	autocomplete="off"  required />
+<br>
+<div id="wrapper">
+<div id="field_div">
+<input type="button" value="Add Author" onclick="add_field();">
+</div>
+</div>
 </div>
 
 <div class="form-group">
@@ -258,9 +264,12 @@ Title
 <input class="form-control" placeholder="Subject3" type="text" name="txtSubject3" 	autocomplete="off"   /> <br>
 <input class="form-control" placeholder="Subject4" type="text" name="txtSubject4" 	autocomplete="off"   />
 <br>
-
+<div id="wrapper">
+<div id="field_div">
+<input type="button" value="Add Subject" onclick="add_field();">
 </div>
-
+</div>
+</div>
 
 <div class="form-group">
 <label>Location 				<span style="color:red;">*</span>	</label>
@@ -297,7 +306,19 @@ foreach($results as $result)
         </div>
    
 </div>
-
+<script>
+function add_field()
+{
+  var total_text=document.getElementsByClassName("input_text");
+  total_text=total_text.length+1;
+  document.getElementById("field_div").innerHTML=document.getElementById("field_div").innerHTML+
+  "<p id='input_text"+total_text+"_wrapper'><input type='text' class='input_text' id='input_text"+total_text+"' placeholder='Enter Text'><input type='button' value='Remove' onclick=remove_field('input_text"+total_text+"');></p>";
+}
+function remove_field(id)
+{
+  document.getElementById(id+"_wrapper").innerHTML="";
+}
+</script>
 
 
 <!--Footer-->
