@@ -1,5 +1,8 @@
 <?php
 session_start();
+
+//hello jm
+
 error_reporting(0);
 include('includes/config.php');
 if($_SESSION['login']!=''){
