@@ -121,7 +121,7 @@ echo "<script>alert('Invalid Details');</script>";
                   
                     <!-- Advanced Tables -->
                     <div class="panel panel-default">
-                        <div class="panel-body">
+                        <div class="panel-body" style="overflow-x: auto">
                             <div class="table-responsive">
                                 <table class="table table-striped table-bordered table-hover" id="dataTables-example">
                                   

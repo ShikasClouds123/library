@@ -204,7 +204,7 @@ Issue a New Book
                 <div class="panel-heading">
                           <center> List of Available books </center>
                 </div>
-                        <div class="panel-body">
+                        <div class="panel-body" style="overflow-x: auto">
                             <div class="table-responsive">
                                 <table class="table table-striped table-bordered table-hover" id="dataTables-example">
                                     <thead>
