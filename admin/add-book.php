@@ -167,7 +167,7 @@ Title
 	<tr>
 
     <td>
-    <input type="text" name="name[]" placeholder="Enter Author" class="form-control name_list" /></td>
+    <input type="text" name="Author[]" placeholder="Enter Author" class="form-control name_list" /></td>
 	<td><button type="button" name="adding" id="adding" class="btn btn-success">Add More</button></td>
 	</tr>
 	</table>
@@ -255,7 +255,7 @@ $(document).ready(function(){
 	var i=1;
 	$('#adding').click(function(){
 		i++;
-		$('#dynamic_field').append('<tr id="row'+i+'"><td><input type="text" name="name[]" placeholder="Enter Author" class="form-control name_list" /></td><td><button type="button" name="remove" id="'+i+'" class="btn btn-danger btn_remove">X</button></td></tr>');
+		$('#dynamic_field').append('<tr id="row'+i+'"><td><input type="text" name="Author[]" placeholder="Enter Author" class="form-control name_list" /></td><td><button type="button" name="remove" id="'+i+'" class="btn btn-danger btn_remove">X</button></td></tr>');
 	});
 	
 	$(document).on('click', '.btn_remove', function(){
