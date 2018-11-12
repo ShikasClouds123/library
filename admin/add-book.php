@@ -2,7 +2,7 @@
 session_start();
 error_reporting(0);
 include('includes/config.php');
-
+include('add-book2.php');
 // not logged in 
 
 if(strlen($_SESSION['alogin'])==0)
@@ -12,78 +12,7 @@ if(strlen($_SESSION['alogin'])==0)
 else	//if logged in properly
 { 
 
-	if(isset($_POST['adding']))
-	{	
-	//Values
-	$ISBN				=	$_POST['txtISBN'];
-	$Barcode			=	$_POST['txtBarcode'];
-	$Callnumber			=	$_POST['txtCallnumber'];
-	$Title				=	$_POST['txtBookTitle'];
-	$Subtitle			=	$_POST['txtSubtitle'];
-	$number             =   count($_POST["name"]);
-	//$Author				=	$_POST['txtAuthor'];
-	$Edition			=	$_POST['txtEdition'];
-	$Publisher			=	$_POST['txtPublisher'];
-	$Copyright			=	$_POST['txtCopyright'];
-	$PhysicalDesc		=	$_POST['txtDescription'];
-	$Series				=	$_POST['txtSeries'];
-	$Subject1			=	$_POST['id'];
-	$Subject2			=	$_POST['txtSubject2'];
-	$Subject3			=	$_POST['txtSubject3'];
-	$Subject4			=	$_POST['txtSubject4'];
-	$Location			=	$_POST['txtLocation'];
-	$Type				=	$_POST['txtType'];
-	$number             =   count($_POST["name"]); 
-if($number > 1)
-{
 	
-		if(trim($_POST["name"]!= ''))
-		{
-	
-
-	$sql="INSERT INTO librarybooks(ISBN,Barcode,Callnumber,Title,Subtitle,tbl_name(name),
-		Edition,Publisher,Copyright,Physicaldesc,Series,Subject_1,Subject_2,Subject_3,
-		Subject_4,Location,Material,Status) VALUES(:ISBN,:Barcode,:Callnumber,:Title,:Subtitle,'". $name ."',
-		:Edition,:Publisher,:Copyright,:Physicaldesc,:Series,:Subject_1,:Subject_2 ,:Subject_3, 
-		:Subject_4,:Location,:Material,'I')";
-
-	$query = $dbh->prepare($sql);
-
-	$query->bindParam(':ISBN'			 ,	$ISBN,			 PDO::PARAM_STR);
-	$query->bindParam(':Barcode'		 ,	$Barcode,		 PDO::PARAM_STR);
-	$query->bindParam(':Callnumber'		 ,	$Callnumber,	 PDO::PARAM_STR);
-	$query->bindParam(':Title'			 ,	$Title,	 	 	 PDO::PARAM_STR);
-	$query->bindParam(':Subtitle'	 	 ,	$Subtitle,	 	 PDO::PARAM_STR);
-	$query->bindParam(':Author'			 ,	$Author,	 	 PDO::PARAM_STR);
-	$query->bindParam(':Edition'		 ,	$Edition,	 	 PDO::PARAM_STR);
-	$query->bindParam(':Publisher'		 ,	$Publisher,		 PDO::PARAM_STR);
-	$query->bindParam(':Copyright'		 ,	$Copyright,		 PDO::PARAM_STR);
-	$query->bindParam(':Physicaldesc' 	 ,	$PhysicalDesc,	 PDO::PARAM_STR);
-	$query->bindParam(':Series'	 		 ,	$Series,	 	 PDO::PARAM_STR);
-	$query->bindParam(':Subject_1'	 	 ,	$Subject1,	 	 PDO::PARAM_STR);
-	$query->bindParam(':Subject_2'	 	 ,	$Subject2,	 	 PDO::PARAM_STR);
-	$query->bindParam(':Subject_3'	 	 ,	$Subject3,	 	 PDO::PARAM_STR);
-	$query->bindParam(':Subject_4'	 	 ,	$Subject4,		 PDO::PARAM_STR);
-	$query->bindParam(':Location'	 	 ,	$Location,	 	 PDO::PARAM_STR);
-	$query->bindParam(':Material'	 	 ,	$Type,			 PDO::PARAM_STR);
-	$query->bindParam('". $name ."'	 	 ,	$number ,			 PDO::PARAM_STR);
-	}
-	echo "Data Inserted";
-}
-	$query->execute();
-	$lastInsertId = $dbh->lastInsertId();
-
-			if($lastInsertId)
-			{
-				$_SESSION['msg']="Book Listed successfully";
-				//header('location:manage-books.php');
-			}
-			else 
-			{
-				$_SESSION['error']="Something went wrong. Please try again";
-				//header('location:manage-books.php');
-			}
-	}
 ?>
 
 <!DOCTYPE html>
@@ -100,10 +29,11 @@ if($number > 1)
 	<link href="assets/css/style6.css" rel="stylesheet" />
 	<link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css' />
 	<link href="assets/css/animate.css" rel="stylesheet" />
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" />
-	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+	
 </head>
+
 
 <!--CSS-->
 <style>
@@ -203,7 +133,7 @@ Title
 </div>
 
 <div class="panel-body">
-<form method="POST" action="add-book-new.php" enctype="multipart/form-data" role ="form">
+<form method="POST" action="add-book.php" enctype="multipart/form-data" role ="form">
 
 <div class="form-group">
 <label>ISBN/ISSN Number 		<span style="color:red;">*</span>	</label>
@@ -235,13 +165,13 @@ Title
 <label>Author<span style="color:red;">*</span>	</label>
 <table class="table table-bordered" id="dynamic_field">
 	<tr>
-	<form name="add_name" id="add_name">
+
     <td>
     <input type="text" name="name[]" placeholder="Enter Author" class="form-control name_list" /></td>
-	<td><button type="button" name="add" id="add" class="btn btn-success">Add More</button></td>
+	<td><button type="button" name="adding" id="adding" class="btn btn-success">Add More</button></td>
 	</tr>
 	</table>
-	</form>
+
 	</div>
 
 
@@ -272,7 +202,7 @@ Title
 </div>
 
 <div class="form-group">
-<label>Subject					<span style="color:red;">*</span>	</label>
+<label>Subject <span style="color:red;">*</span></label>
 <input class="form-control" placeholder="Subject1" type="text" name="txtSubject1" 	autocomplete="off"  required /> <br>
 <input class="form-control" placeholder="Subject2" type="text" name="txtSubject2" 	autocomplete="off"   /> <br>
 <input class="form-control" placeholder="Subject3" type="text" name="txtSubject3" 	autocomplete="off"   /> <br>
@@ -310,7 +240,7 @@ foreach($results as $result)
 </select>
 </div>
 
-<button type="submit" name= "adding" id = "adding" class="button"><span>Add </span></button>
+<button type="submit" name="addbooks" class="button">Add </button>
 
 </form>
                             </div>
@@ -323,7 +253,7 @@ foreach($results as $result)
 <script>
 $(document).ready(function(){
 	var i=1;
-	$('#add').click(function(){
+	$('#adding').click(function(){
 		i++;
 		$('#dynamic_field').append('<tr id="row'+i+'"><td><input type="text" name="name[]" placeholder="Enter Author" class="form-control name_list" /></td><td><button type="button" name="remove" id="'+i+'" class="btn btn-danger btn_remove">X</button></td></tr>');
 	});
@@ -331,21 +261,7 @@ $(document).ready(function(){
 	$(document).on('click', '.btn_remove', function(){
 		var button_id = $(this).attr("id"); 
 		$('#row'+button_id+'').remove();
-	});
-	
-	$('#adding').click(function(){		
-		$.ajax({
-			url:"index.php",
-			method:"POST",
-			data:$('#add_name').serialize(),
-			success:function(data)
-			{
-				alert(data);
-				$('#add_name')[0].reset();
-			}
-		});
-	});
-	
+	});	
 });
 </script>
 
