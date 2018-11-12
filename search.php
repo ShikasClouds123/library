@@ -86,34 +86,15 @@ header('location:index.php');
 
 </div>
 </div>
-            <div class="row">
+           <div class="row">
                 <div class="col-md-12">
+                  
                     <!-- Advanced Tables -->
                     <div class="panel panel-default">
-                        <div class="panel-heading">
-                           Books Listing
-						
-							<div >
-						   Available books: 
-						   <?php 
-							$servername = "localhost";
-							$username = "root";
-							$password = "";
-							$dbname = "library";
-							$con = mysqli_connect($servername,$username,$password,$dbname);
-							
-							$sql = "SELECT count(ID) AS total FROM librarybooks where Status = 'I' ";
-							$result = mysqli_query($con,$sql);
-							$values = mysqli_fetch_assoc($result);
-							$num_rows = $values['total'];
-							echo $num_rows;
-							?>
-							</div>
-												
-                        </div>
-                         <div class="panel-body">
+                        <div class="panel-body" style="overflow-x: auto">
                             <div class="table-responsive">
                                 <table class="table table-striped table-bordered table-hover" id="dataTables-example">
+                                  
                                     <thead>
                                         <tr>
 											<th>#</th>
@@ -131,10 +112,11 @@ header('location:index.php');
 											<th>Subject</th>   
 											<th>Location</th>
 											<th>Material</th>
+											<th>Available Books</th> 
 											<th>Status</th> 
                                     </thead>
                                     <tbody>
-<?php $sql = 	"SELECT * FROM librarybooks";
+<?php $sql = 	"SELECT *, COUNT(ISBN) as 'AvailableBooks' FROM librarybooks WHERE Status = 'I' GROUP BY ISBN";
 $query = $dbh -> prepare($sql);
 $query->execute();
 $results=$query->fetchAll(PDO::FETCH_OBJ);
@@ -160,7 +142,20 @@ foreach($results as $result)
 											<td class="center"><?php echo htmlentities($result->Subject_1);?></td>
 											<td class="center"><?php echo htmlentities($result->Location);?></td>
 											<td class="center"><?php echo htmlentities($result->Material);?></td>
-											<td class="center"><?php if($result->Status=="I")
+											<td class="center">
+											<?php if($result->AvailableBooks=="0")
+												{
+													echo htmlentities("Unavailable");
+												}
+												else 
+												{
+												echo htmlentities($result->AvailableBooks);
+												}
+                                            ?>
+											</td>
+											
+											<td class="center">
+											<?php if($result->Status=="I")
 												{
 													echo htmlentities("Available");
 												}
@@ -180,6 +175,7 @@ foreach($results as $result)
                     </div>
                     <!--End Advanced Tables -->
                 </div>
+            </div>
             </div>
 
 

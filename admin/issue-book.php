@@ -12,7 +12,7 @@ else
 	if(isset($_POST['issue']))
 	{
 	$studentid=strtoupper($_POST['studentid']);
-	$bookid=$_POST['ISBN'];
+	$bookid=$_POST['Barcode'];
 	$InsertBookID = $bookid;
 	$new_date = date('Y-m-d', strtotime($_POST['expDate']));
 	$getdate = $_POST['expDate'];
@@ -20,7 +20,7 @@ else
 	$sql="INSERT INTO  tblissuedbookdetails(StudentID,BookId,expirationDate) VALUES(:studentid,'$InsertBookID','$getdate'); 
 		  UPDATE librarybooks
 		  SET `Status` = 'O'
-		  WHERE `ISBN` = :bookid;";
+		  WHERE `Barcode` = :bookid;";
 	
 	$query = $dbh->prepare($sql);
 	$query->bindParam(':studentid',$studentid,PDO::PARAM_STR);
@@ -67,12 +67,26 @@ header('location:manage-issued-books.php');
 
 
 <script>
+function getstudent() {
+$("#loaderIcon").show();
+jQuery.ajax({
+url: "get_student.php",
+data:'studentid='+$("#studentid").val(),
+type: "POST",
+success:function(data){
+$("#get_student_name").html(data);
+$("#loaderIcon").hide();
+},
+error:function (){}
+});
+}
+
 //function for book details
 function getbook() {
 $("#loaderIcon").show();
 jQuery.ajax({
 url: "get_book.php",
-data:'ISBN=' + $("#ISBN").val(),
+data:'Barcode=' + $("#Barcode").val(),
 type: "POST",
 success:function(data){
 $("#get_book_name").html(data);
@@ -172,8 +186,8 @@ Issue a New Book
 
 
 <div class="form-group">
-<label>ISBN<span style="color:red;">*</span></label>
-<input class="form-control" type="text" name="ISBN" id="ISBN" onBlur="getbook()"  required="required" />
+<label>Barcode<span style="color:red;">*</span></label>
+<input class="form-control" type="text" name="Barcode" id="Barcode" onBlur="getbook()"  required="required" />
 </div>
 
  <div class="form-group">

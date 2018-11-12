@@ -1,7 +1,7 @@
 <?php 
 require_once("includes/config.php");
-if(!empty($_POST["ISBN"])) {
-  $ISBN=$_POST["ISBN"];
+if(!empty($_POST["Barcode"])) {
+  $Barcode=$_POST["Barcode"];
  
     /*
 	$sql ="SELECT BarCode, Book_Title, Status
@@ -10,10 +10,10 @@ if(!empty($_POST["ISBN"])) {
 			ON table_copies.ISBN = library_books.ISBN
 			WHERE (BarCode=:bookid)";
 	*/
-$sql = "SELECT ISBN, BarCode, Callnumber, Title, Edition, Copyright, Series, Status FROM librarybooks WHERE (ISBN=:ISBN)";
+$sql = "SELECT Barcode,Title,Status FROM librarybooks WHERE (Barcode=:Barcode)";
 
 $query= $dbh -> prepare($sql);
-$query-> bindParam(':ISBN', $ISBN, PDO::PARAM_STR);
+$query-> bindParam(':Barcode', $Barcode, PDO::PARAM_STR);
 $query-> execute();
 $results = $query -> fetchAll(PDO::FETCH_OBJ);
 $cnt=1;
