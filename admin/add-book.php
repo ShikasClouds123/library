@@ -29,9 +29,16 @@ else	//if logged in properly
 	<link href="assets/css/style6.css" rel="stylesheet" />
 	<link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css' />
 	<link href="assets/css/animate.css" rel="stylesheet" />
+<<<<<<< HEAD
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+    <script src="assets/js/saveUserInformation.js"></script>
+
+=======
 		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
 	
+>>>>>>> b7f94eb789aa1c7e096c27394f8e9af8e26362e2
 </head>
 
 
@@ -112,6 +119,35 @@ input[type="button"]
 }
 </style>
 
+<script>
+$(document).ready(function(){
+	var i=1;
+	$('#add').click(function(){
+		i++;
+		$('#dynamic_field').append('<tr id="row'+i+'"><td><input type="text" name="name[]" placeholder="Enter Author" class="form-control name_list" /></td><td><button type="button" name="remove" id="'+i+'" class="btn btn-danger btn_remove">X</button></td></tr>');
+	});
+	
+	$(document).on('click', '.btn_remove', function(){
+		var button_id = $(this).attr("id"); 
+		$('#row'+button_id+'').remove();
+	});
+	
+	$('#adding').click(function(){		
+		$.ajax({
+			url:"index.php",
+			method:"POST",
+			data:$('#add_name').serialize(),
+			success:function(data)
+			{
+				alert(data);
+				$('#add_name')[0].reset();
+			}
+		});
+	});
+	
+});
+</script>
+
 <body>
 
 <!--Header-->
@@ -133,31 +169,35 @@ Title
 </div>
 
 <div class="panel-body">
+<<<<<<< HEAD
+<form method="POST"  enctype="multipart/form-data" id="myform" onsubmit="return false">
+=======
 <form method="POST" action="add-book.php" enctype="multipart/form-data" role ="form">
+>>>>>>> b7f94eb789aa1c7e096c27394f8e9af8e26362e2
 
-<div class="form-group">
+<div class="form-group"> 
 <label>ISBN/ISSN Number 		<span style="color:red;">*</span>	</label>
-<input class="form-control" placeholder="ISBN/ISSN Number" type="text"  name="txtISBN"  	autocomplete="off" 	required  />
+<input class="form-control" placeholder="ISBN/ISSN Number" type="text"  name="txtISBN" id="txtISBN"  	autocomplete="off" form="myform" 	required  />
 </div>
 
 <div class="form-group">
 <label>Barcode					<span style="color:red;">*</span>	</label>
-<input class="form-control" placeholder="Barcode" type="text" name="txtBarcode" 	autocomplete="off"  required />
+<input class="form-control" placeholder="Barcode" type="text" name="txtBarcode" id="txtBarcode"	autocomplete="off" form="myform" required />
 </div>
 
 <div class="form-group">
 <label>Callnumber				<span style="color:red;">*</span>	</label>
-<input class="form-control" placeholder="Callnumber" type="text" name="txtCallnumber" autocomplete="off"  required />
+<input class="form-control" placeholder="Callnumber" type="text"  name="txtCallnumber" id="txtCallnumber" autocomplete="off" form="myform" required />
 </div>
 
 <div class="form-group">
 <label>Title					<span style="color:red;">*</span>	</label>
-<input class="form-control" placeholder="Title" type="text" name="txtBookTitle" autocomplete="off"  required />
+<input class="form-control" placeholder="Title" type="text" name="txtBookTitle" id="txtBookTitle"  autocomplete="off" form="myform" required />
 </div>
 
 <div class="form-group">
 <label>Subtitle					<span style="color:red;">*</span>	</label>
-<input class="form-control" placeholder="Subtitle" type="text" name="txtSubtitle"	autocomplete="off"	required />
+<input class="form-control" placeholder="Subtitle" type="text" name="txtSubtitle" id="txtSubtitle"	autocomplete="off" form="myform"	required />
 </div>
 
 <div class="form-group">
@@ -167,8 +207,13 @@ Title
 	<tr>
 
     <td>
+<<<<<<< HEAD
+    <input type="text" name="name[]" placeholder="Enter Author" id="txtAuthor" form="myform" class="form-control name_list" /></td>
+	<td><button type="button" name="add" id="add" class="btn btn-success">Add More</button></td>
+=======
     <input type="text" name="Author[]" placeholder="Enter Author" class="form-control name_list" /></td>
 	<td><button type="button" name="adding" id="adding" class="btn btn-success">Add More</button></td>
+>>>>>>> b7f94eb789aa1c7e096c27394f8e9af8e26362e2
 	</tr>
 	</table>
 
@@ -177,36 +222,44 @@ Title
 
 <div class="form-group">
 <label>Edition					<span style="color:red;">*</span>	</label>
-<input class="form-control" placeholder="Edition" type="text" name="txtEdition" 	autocomplete="off"  required />
+<input class="form-control" placeholder="Edition" type="text" name="txtEdition" form="myform" id="txtEdition" 	autocomplete="off"  required />
 </div>
 
 <div class="form-group">
 <label>Publisher				<span style="color:red;">*</span>	</label>
-<input class="form-control" placeholder="Publisher" type="text" name="txtPublisher"	autocomplete="off"  required />
+<input class="form-control" placeholder="Publisher" type="text" name="txtPublisher" form="myform" id="txtPublisher"	autocomplete="off"  required />
 </div>
 
 <div class="form-group">
 <label>Copyright				<span style="color:red;">*</span>	</label>
-<input class="form-control" placeholder="Copyright" type="text" name="txtCopyright" autocomplete="off"  required />
+<input class="form-control" placeholder="Copyright" type="text" name="txtCopyright" form="myform" id="txtCopyright" autocomplete="off"  required />
 </div>
 
 <div class="form-group">
 <label>Physical Description 	<span style="color:red;">*</span>	</label>
-<textarea class="form-control"  type="comment" name="txtDescription" autocomplete="off" required /> 
+<textarea class="form-control"  type="comment" name="txtDescription" id="txtDescription" form="myform" autocomplete="off" required /> 
 </textarea>
 </div>
 
 <div class="form-group">
 <label>Series				<span style="color:red;">*</span>	</label>
-<input class="form-control" placeholder="Series" type="text"  name="txtSeries" 			autocomplete="off"  required />
+<input class="form-control" placeholder="Series" type="text" id="txtSeries" form="myform" name="txtSeries" 			autocomplete="off"  required />
 </div>
 
 <div class="form-group">
+<<<<<<< HEAD
+<label>Subject					<span style="color:red;">*</span>	</label>
+<input class="form-control" placeholder="Subject1" type="text" name="txtSubject1" form="myform" id="txtSubject1"	autocomplete="off"  required /> <br>
+<input class="form-control" placeholder="Subject2" type="text" name="txtSubject2" form="myform" id="txtSubject2" 	autocomplete="off"   /> <br>
+<input class="form-control" placeholder="Subject3" type="text" name="txtSubject3" form="myform" id="txtSubject3"	autocomplete="off"   /> <br>
+<input class="form-control" placeholder="Subject4" type="text" name="txtSubject4" form="myform" id="txtSubject4"	autocomplete="off"   />
+=======
 <label>Subject <span style="color:red;">*</span></label>
 <input class="form-control" placeholder="Subject1" type="text" name="txtSubject1" 	autocomplete="off"  required /> <br>
 <input class="form-control" placeholder="Subject2" type="text" name="txtSubject2" 	autocomplete="off"   /> <br>
 <input class="form-control" placeholder="Subject3" type="text" name="txtSubject3" 	autocomplete="off"   /> <br>
 <input class="form-control" placeholder="Subject4" type="text" name="txtSubject4" 	autocomplete="off"   />
+>>>>>>> b7f94eb789aa1c7e096c27394f8e9af8e26362e2
 <br>
 <div id="wrapper">
 <div id="field_div">
@@ -217,12 +270,12 @@ Title
 
 <div class="form-group">
 <label>Location 				<span style="color:red;">*</span>	</label>
-<input class="form-control" placeholder="Location" type="text" name="txtLocation" 	autocomplete="off"  required />
+<input class="form-control" placeholder="Location" type="text" name="txtLocation" form="myform" id="txtLocation"	autocomplete="off"  required />
 </div>
 
 <div class="form-group">
 <label>Material Type			<span style="color:red;">*</span>	</label>
-<select class="form-control"  			name="txtType" 							required >
+<select class="form-control"  			name="txtType" 	form="myform" id="txtType"		required >
 <option value="">Select Type</option>
 <?php 
 $sql = "SELECT * from  material";
@@ -240,7 +293,11 @@ foreach($results as $result)
 </select>
 </div>
 
+<<<<<<< HEAD
+<button type="submit" name="adding" id ="adding" class="button"><span>Add </span></button>
+=======
 <button type="submit" name="addbooks" class="button">Add </button>
+>>>>>>> b7f94eb789aa1c7e096c27394f8e9af8e26362e2
 
 </form>
                             </div>
@@ -250,6 +307,11 @@ foreach($results as $result)
         </div>
    
 </div>
+<<<<<<< HEAD
+
+
+
+=======
 <script>
 $(document).ready(function(){
 	var i=1;
@@ -264,10 +326,12 @@ $(document).ready(function(){
 	});	
 });
 </script>
+>>>>>>> b7f94eb789aa1c7e096c27394f8e9af8e26362e2
 
 
 <!--Footer-->
 <?php include('includes/footer.php');?>
+
 <script src="assets/js/jquery-1.10.2.js"></script>
 <script src="assets/js/bootstrap.js"></script>
 <script src="assets/js/custom.js"></script>
