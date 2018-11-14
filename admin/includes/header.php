@@ -42,7 +42,7 @@
                                 <ul class="dropdown-menu" role="menu" aria-labelledby="ddlmenuItem">
                                     <li role="presentation"><a role="menuitem" tabindex="-1" href="add-book.php">Add Book</a></li>					
 									<li role="presentation"><a role="menuitem" tabindex="-1" href="add-material.php">Add Material</a></li>
-									 
+									<li role="presentation"><a role="menuitem" tabindex="-1" href="add-Copies.php">Add New Copy</a></li> 
                                 </ul>
                             </li>
 

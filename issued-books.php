@@ -68,7 +68,7 @@ header('location:manage-books.php');
                                     <thead>
                                         <tr>
                                             <th>#</th>
-                                            <th>ISBN </th>
+                                            <th>Barcode </th>
                                             <th>Issued Date</th>
 											<th>Expiry Date</th>
                                             <th>Return Date</th>
