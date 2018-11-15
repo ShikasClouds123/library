@@ -2,16 +2,16 @@
 
 if(isset($_POST['addbooks']))
 	{	
-		addbook();
+		addbooks();
 	}
 
-function addbook(){
+function addbooks(){
 
-$number = count($_POST["name"]);
- 
+$number = count($_POST["name"]); 
 if($number > 1)
 {
-	if(trim($_POST["name"]!= ''))
+	
+		if(trim($_POST["name"]!= ''))
 		{
 	//Values
 	$ISBN				=	$_POST['txtISBN'];
@@ -19,8 +19,9 @@ if($number > 1)
 	$Callnumber			=	$_POST['txtCallnumber'];
 	$Title				=	$_POST['txtBookTitle'];
 	$Subtitle			=	$_POST['txtSubtitle'];
-	$Author               = htmlspecialchars(join(",\n",$_POST['Author']));
-	//$Author				=	$_POST['txtAuthor'];
+	$name               =   htmlspecialchars(join(",\n",$_POST['name']));
+	$NameOfAuthor 		= $name;
+	//$Author			=	$_POST['txtAuthor'];
 	$Edition			=	$_POST['txtEdition'];
 	$Publisher			=	$_POST['txtPublisher'];
 	$Copyright			=	$_POST['txtCopyright'];
@@ -32,13 +33,16 @@ if($number > 1)
 	$Subject4			=	$_POST['txtSubject4'];
 	$Location			=	$_POST['txtLocation'];
 	$Type				=	$_POST['txtType'];
-	/*echo '<pre>';
-		echo die(var_dump($ISBN, $Barcode, $Callnumber, $Title, $Subtitle, $name, $Edition, $Publisher, $Copyright, $PhysicalDesc, $Series, $Location, $Type));
-	echo '</pre>';*/
+	//echo '<pre>';
+		//echo die(var_dump($ISBN, $Barcode, $Callnumber, $Title, $Subtitle, $name, $Edition, $Publisher, $Copyright, $PhysicalDesc, $Series, $Location, $Type));
+	//echo '</pre>';
 
-	$sql="INSERT INTO librarybooks(ISBN,Barcode,Callnumber,Title,Subtitle,Author,Edition,Publisher,Copyright,Physicaldesc,Series,Subject_1,Subject_2,Subject_3,Subject_4,Location,Material,Status) 
-		VALUES(:ISBN,:Barcode,:Callnumber,:Title,:Subtitle,'$Author',:Edition,:Publisher,:Copyright,:Physicaldesc,:Series,:Subject_1,:Subject_2 ,:Subject_3,:Subject_4,:Location,:Material,'I')";
-}
+	$sql="INSERT INTO librarybooks(ISBN,Barcode,Callnumber,Title,Subtitle,Author,
+		Edition,Publisher,Copyright,Physicaldesc,Series,Subject_1,Subject_2,Subject_3,
+		Subject_4,Location,Material,Status) VALUES(:ISBN,:Barcode,:Callnumber,:Title,:Subtitle,:Author,
+		:Edition,:Publisher,:Copyright,:Physicaldesc,:Series,:Subject_1,:Subject_2 ,:Subject_3, 
+		:Subject_4,:Location,:Material,'I')";
+
 	$query = $dbh->prepare($sql);
 
 	$query->bindParam(':ISBN'			 ,	$ISBN,			 PDO::PARAM_STR);
@@ -58,16 +62,20 @@ if($number > 1)
 	$query->bindParam(':Subject_4'	 	 ,	$Subject4,		 PDO::PARAM_STR);
 	$query->bindParam(':Location'	 	 ,	$Location,	 	 PDO::PARAM_STR);
 	$query->bindParam(':Material'	 	 ,	$Type,			 PDO::PARAM_STR);
+	$query->bindParam(':Author'	 	 	 ,	$NameOfAuthor,	 PDO::PARAM_STR);
 
 
 	$query->execute();
+		}
+    
 
+}
 	$lastInsertId = $dbh->lastInsertId();
 
 			if($lastInsertId)
 			{
 				$_SESSION['msg']="Book Listed successfully";
-				header('location:add-book.php');
+				//header('location:manage-books.php');
 			}
 			else 
 			{
@@ -76,7 +84,7 @@ if($number > 1)
 			}
 	}
 
-}
+
 
 
 ?>
