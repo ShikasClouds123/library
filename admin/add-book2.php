@@ -1,27 +1,23 @@
 <?php
+session_start();
+include 'includes/config.php';
 
-if(isset($_POST['addbooks']))
-	{	
-		addbooks();
+if(isset($_POST['addbooks'])) {	
+
+	$number = count(array_filter($_POST["Author"])); 
+
+	if($number < 1)
+	{ 
+		return;
 	}
 
-function addbooks(){
-
-$number = count($_POST["name"]); 
-if($number > 1)
-{
-	
-		if(trim($_POST["name"]!= ''))
-		{
 	//Values
 	$ISBN				=	$_POST['txtISBN'];
 	$Barcode			=	$_POST['txtBarcode'];
 	$Callnumber			=	$_POST['txtCallnumber'];
 	$Title				=	$_POST['txtBookTitle'];
 	$Subtitle			=	$_POST['txtSubtitle'];
-	$name               =   htmlspecialchars(join(",\n",$_POST['name']));
-	$NameOfAuthor 		= $name;
-	//$Author			=	$_POST['txtAuthor'];
+	$NameOfAuthor       =   htmlspecialchars(join(",\n",$_POST['Author']));
 	$Edition			=	$_POST['txtEdition'];
 	$Publisher			=	$_POST['txtPublisher'];
 	$Copyright			=	$_POST['txtCopyright'];
@@ -33,9 +29,6 @@ if($number > 1)
 	$Subject4			=	$_POST['txtSubject4'];
 	$Location			=	$_POST['txtLocation'];
 	$Type				=	$_POST['txtType'];
-	//echo '<pre>';
-		//echo die(var_dump($ISBN, $Barcode, $Callnumber, $Title, $Subtitle, $name, $Edition, $Publisher, $Copyright, $PhysicalDesc, $Series, $Location, $Type));
-	//echo '</pre>';
 
 	$sql="INSERT INTO librarybooks(ISBN,Barcode,Callnumber,Title,Subtitle,Author,
 		Edition,Publisher,Copyright,Physicaldesc,Series,Subject_1,Subject_2,Subject_3,
@@ -44,13 +37,12 @@ if($number > 1)
 		:Subject_4,:Location,:Material,'I')";
 
 	$query = $dbh->prepare($sql);
-
+	
 	$query->bindParam(':ISBN'			 ,	$ISBN,			 PDO::PARAM_STR);
 	$query->bindParam(':Barcode'		 ,	$Barcode,		 PDO::PARAM_STR);
 	$query->bindParam(':Callnumber'		 ,	$Callnumber,	 PDO::PARAM_STR);
 	$query->bindParam(':Title'			 ,	$Title,	 	 	 PDO::PARAM_STR);
 	$query->bindParam(':Subtitle'	 	 ,	$Subtitle,	 	 PDO::PARAM_STR);
-	//$query->bindParam(':Author'			 ,	$Author,	 	 PDO::PARAM_STR);
 	$query->bindParam(':Edition'		 ,	$Edition,	 	 PDO::PARAM_STR);
 	$query->bindParam(':Publisher'		 ,	$Publisher,		 PDO::PARAM_STR);
 	$query->bindParam(':Copyright'		 ,	$Copyright,		 PDO::PARAM_STR);
@@ -64,27 +56,7 @@ if($number > 1)
 	$query->bindParam(':Material'	 	 ,	$Type,			 PDO::PARAM_STR);
 	$query->bindParam(':Author'	 	 	 ,	$NameOfAuthor,	 PDO::PARAM_STR);
 
-
 	$query->execute();
-		}
-    
 
+	return;
 }
-	$lastInsertId = $dbh->lastInsertId();
-
-			if($lastInsertId)
-			{
-				$_SESSION['msg']="Book Listed successfully";
-				//header('location:manage-books.php');
-			}
-			else 
-			{
-				$_SESSION['error']="Something went wrong. Please try again";
-				//header('location:manage-books.php');
-			}
-	}
-
-
-
-
-?>

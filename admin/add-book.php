@@ -18,21 +18,85 @@ else	//if logged in properly
 
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" class="animated fadeIn">
-
 <head>
 	<meta charset="utf-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
 	<meta name="description" content="" />
 	<meta name="author" content="" />
-<title>Online Library Management System | Add Book</title>
+  <title>Online Library Management System | Add Book</title>
 	<link href="assets/css/bootstrap10.css" rel="stylesheet" />
 	<link href="assets/css/font-awesome.css" rel="stylesheet" />
 	<link href="assets/css/style6.css" rel="stylesheet" />
 	<link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css' />
 	<link href="assets/css/animate.css" rel="stylesheet" />
-		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
-		<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
-	
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+  <script>
+    let authorInputFieldCount = 1;
+    let authorInputFieldLimit = 5;
+
+    function addAuthor() {
+      if (authorInputFieldCount >= authorInputFieldLimit) {
+        return;    
+      }
+
+      let dynamicField = document.querySelector('#dynamic_field').getElementsByTagName('tbody')[0];
+
+      let newAuthorField = `
+        <tr id="author-${authorInputFieldCount}">
+          <td>
+            <input type="text" name="Author[]" placeholder="Enter Author" class="form-control name_list" />
+          </td>
+          <td>
+            <button type="button" onClick="remove(this)" class="btn btn-danger">X</button>
+          </td>
+        </tr>
+      `;
+
+      dynamicField.innerHTML += newAuthorField;
+      
+      authorInputFieldCount++;
+    }
+
+    function remove (target) {
+      target.parentNode.parentNode.remove();
+      authorInputFieldCount--;
+    }
+
+
+
+    let subjectInputFieldCount = 1;
+    let subjectInputFieldLimit = 5;
+
+    function addSubject() {
+      if (subjectInputFieldCount >= subjectInputFieldLimit) {
+        return;    
+      }
+
+      let dynamicField = document.querySelector('#dynamic_field_subject').getElementsByTagName('tbody')[0];
+
+      let newSubjectField = `
+        <tr id="subject-${subjectInputFieldCount}">
+          <td>
+            <input type="text" name="Subject[]" placeholder="Enter Subject" class="form-control name_list" />
+          </td>
+          <td>
+            <button type="button" onClick="removeSubject(this)" class="btn btn-danger">X</button>
+          </td>
+        </tr>
+      `;
+
+      dynamicField.innerHTML += newSubjectField;
+      
+      subjectInputFieldCount++;
+    }
+
+    function removeSubject (target) {
+      target.parentNode.parentNode.remove();
+      subjectInputFieldCount--;
+    }
+
+  </script>
 </head>
 
 
@@ -162,18 +226,18 @@ Title
 </div>
 
 <div class="form-group">
-
-<label>Author<span style="color:red;">*</span>	</label>
-<table class="table table-bordered" id="dynamic_field">
-	<tr>
-
-    <td>
-    <input type="text" name="name[]" placeholder="Enter Author" class="form-control name_list" /></td>
-	<td><button type="button" name="adding" id="adding" class="btn btn-success">Add More</button></td>
-	</tr>
+  <label>Author<span style="color:red;">*</span>	</label>
+  <table class="table table-bordered" id="dynamic_field">
+  	<tr>
+      <td>
+        <input type="text" name="Author[]" placeholder="Enter Author" class="form-control name_list" />
+      </td>
+    	<td>
+        <button type="button" onClick="addAuthor()" class="btn btn-success">Add More</button>
+      </td>
+	  </tr>
 	</table>
-
-	</div>
+</div>
 
 
 <div class="form-group">
@@ -203,17 +267,17 @@ Title
 </div>
 
 <div class="form-group">
-<label>Subject <span style="color:red;">*</span></label>
-<input class="form-control" placeholder="Subject1" type="text" name="txtSubject1" 	autocomplete="off"  required /> <br>
-<input class="form-control" placeholder="Subject2" type="text" name="txtSubject2" 	autocomplete="off"   /> <br>
-<input class="form-control" placeholder="Subject3" type="text" name="txtSubject3" 	autocomplete="off"   /> <br>
-<input class="form-control" placeholder="Subject4" type="text" name="txtSubject4" 	autocomplete="off"   />
-<br>
-<div id="wrapper">
-<div id="field_div">
-<input type="button" value="Add Subject" onclick="add_field();">
-</div>
-</div>
+  <label>Subject<span style="color:red;">*</span>  </label>
+  <table class="table table-bordered" id="dynamic_field_subject">
+    <tr>
+      <td>
+        <input type="text" name="Subject[]" placeholder="Enter Subject" class="form-control name_list" />
+      </td>
+      <td>
+        <button type="button" onClick="addSubject()" class="btn btn-success">Add More</button>
+      </td>
+    </tr>
+  </table>
 </div>
 
 <div class="form-group">
@@ -251,20 +315,7 @@ foreach($results as $result)
         </div>
    
 </div>
-<script>
-$(document).ready(function(){
-	var i=1;
-	$('#adding').click(function(){
-		i++;
-		$('#dynamic_field').append('<tr id="row'+i+'"><td><input type="text" name="name[]" placeholder="Enter Author" class="form-control name_list" /></td><td><button type="button" name="remove" id="'+i+'" class="btn btn-danger btn_remove">X</button></td></tr>');
-	});
-	
-	$(document).on('click', '.btn_remove', function(){
-		var button_id = $(this).attr("id"); 
-		$('#row'+button_id+'').remove();
-	});	
-});
-</script>
+
 
 
 <!--Footer-->
