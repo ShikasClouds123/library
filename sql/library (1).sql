@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.8.3
+-- version 4.7.7
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 03, 2018 at 11:13 AM
--- Server version: 10.1.36-MariaDB
--- PHP Version: 7.2.11
+-- Generation Time: Nov 16, 2018 at 09:53 AM
+-- Server version: 10.1.30-MariaDB
+-- PHP Version: 7.2.2
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -64,9 +64,6 @@ CREATE TABLE `librarybooks` (
   `Physicaldesc` varchar(255) NOT NULL,
   `Series` varchar(255) NOT NULL,
   `Subject_1` varchar(255) NOT NULL,
-  `Subject_2` varchar(255) NOT NULL,
-  `Subject_3` varchar(255) NOT NULL,
-  `Subject_4` varchar(255) NOT NULL,
   `Location` varchar(255) NOT NULL,
   `Material` varchar(255) NOT NULL,
   `Status` varchar(255) NOT NULL
@@ -76,9 +73,47 @@ CREATE TABLE `librarybooks` (
 -- Dumping data for table `librarybooks`
 --
 
-INSERT INTO `librarybooks` (`id`, `ISBN`, `Barcode`, `Callnumber`, `Title`, `Subtitle`, `Author`, `Edition`, `Publisher`, `Copyright`, `Physicaldesc`, `Series`, `Subject_1`, `Subject_2`, `Subject_3`, `Subject_4`, `Location`, `Material`, `Status`) VALUES
-(1, 'ISBN Number1', 'Barcode1', 'Callnumber1', 'Title1', 'Subtitle1', 'Author1', 'Edition1', 'Publisher1', 'Copyright1', 'Desc1 \r\n', 'Series1', 'Subject1', '', '', '', 'Location1', 'Books', 'I'),
-(2, 'ISBN Number2', 'Barcode2', 'Callnumber2', 'Title2', 'Subtitle2', 'Author2', 'Edition2', 'Publisher2', 'Copyright2', 'Desc2 \r\n', 'Series2', 'Subject2', 'Pre Subject2', '2', '3', 'Location2', 'Books', 'O');
+INSERT INTO `librarybooks` (`id`, `ISBN`, `Barcode`, `Callnumber`, `Title`, `Subtitle`, `Author`, `Edition`, `Publisher`, `Copyright`, `Physicaldesc`, `Series`, `Subject_1`, `Location`, `Material`, `Status`) VALUES
+(1, 'ISBN Number1', 'Barcode1', 'Callnumber1', 'Title1', 'Subtitle1', 'Author1', 'Edition1', 'Publisher1', 'Copyright1', 'Desc1 \r\n', 'Series1', 'Subject1', 'Location1', 'Books', 'I'),
+(2, 'ISBN Number2', 'Barcode2', 'Callnumber2', 'Title2', 'Subtitle2', 'Author2', 'Edition2', 'Publisher2', 'Copyright2', 'Desc2 \r\n', 'Series2', 'Subject2', 'Location2', 'Books', 'I'),
+(3, '90009', '1112', '09275261847', 'TITLE', 'sda', 'asd', 'asd', 'asd', 'asd', ' asd\r\n', 'asd', '1', 'a1', 'Books', 'O'),
+(4, '9780062278982', '1001', '1001 A', 'A Thousand Pieces of You', 'A Thousand Pieces of You Subtitle', 'Claudia Gray', 'Gold Edition', 'Sample Publisher', 'Copyright 2018', 'Sample Description \r\n', 'Sample Series', 'Subject1', 'A1', 'Books', 'O'),
+(5, '9780062473035', '1002', '1002 A', 'Unfiltered', 'Unfiltered Subtitle', 'Lily Collins', 'Silver Edition', 'Sample Publsiher', 'Copyright 2018', 'Physical Description \r\n', 'Sample Series', 'Subject1', 'A2', 'Books', 'I'),
+(6, '123', '123', '123214', 'sample', 'sample', 'sample', 'sample', 'sample', 'sample', 'sample \r\n', 'sample', 'sample', 'A1', 'magazine', 'I'),
+(7, '123132', '12312', '21313', '21313132', '321313213', '2132131231', '131232', '1312312', '31313', ' 2133\n', '231233', ' 2133\n', '23123', '21321', '\nmp4'),
+(8, '123123', '112321', '123', '1232', '123', '1231', '123123', '123123', '1232', ' 12312\n', '1231', ' 12312\n', '321321', '21313', '\nBooks'),
+(9, '', '', '', '', '', '', '', '', '', ' \n', '', ' \n', '', '', 'Select Type'),
+(10, '', '', '', '', '', '', '', '', '', ' \n', '', ' \n', '', '', 'Select Type'),
+(11, 'asdasd', 'adasd', 'adadadas', 'dasdada', 'dadadasd', '', 'asdadd', 'asdadad', 'asdas', ' asdasd\n', 'asdad', ' asdasd\n', 'das', 'asdada', '\nBooks'),
+(12, '122312', '213123', '21321', '31231221312', '21321', '', '21312312', '31231232', '1312312', ' 12312321\n', '123213', ' 12312321\n', '213123', '12232313', '\nBooks'),
+(13, '', '', '', '', '', '', '', '', '', '', '', '', '', '', ''),
+(14, 'asdasd', 'asdasdad', 'asdada', 'adadsada', 'sadasd', '', 'saddd', 'asddasdasd', 'assadd', ' dsadasd\n', 'asdada', ' dsadasd\n', 'adada', 'asdasd', '\nmp3'),
+(15, '', '', '', '', '', '', '', '', '', '', '', '', '', '', ''),
+(16, '131', '1231233', '1331231', '23123', '1231', '', '123123', '21312321', '3213', ' 1231231\n', '23123123', ' 1231231\n', '312313', '123123', '\nBooks'),
+(17, '', '', '', '', '', '', '', '', '', '', '', '', '', '', ''),
+(18, '', '', '', '', '', '', '', '', '', '', '', '', '', '', ''),
+(19, '', '', '', '', '', '', '', '', '', '', '', '', '', '', ''),
+(20, '', '', '', '', '', '', '', '', '', '', '', '', '', '', ''),
+(21, '123123', '31312321', '312312', '3123123', '12321312', '', '21312321', '3231313', '21', ' \n2131231', '21312321', ' \n2131231', '3312312', '213123', '\nBooks'),
+(22, '', '', '', '', '', '', '', '', '', '', '', '', '', '', ''),
+(23, '12313', '32132132', '213123', '13123131', '31232', '', '', '', '', ' \n', '', ' \n', '', '', 'Select Type'),
+(24, '', '', '', '', '', '', '', '', '', '', '', '', '', '', ''),
+(25, '2312312312', '312312', '313113131', '213123', '13123', '', '213123', '131312312', '313131', ' 131231\n', '31231231', ' 131231\n', '31231', '12313', '\nBooks'),
+(26, '', '', '', '', '', '', '', '', '', '', '', '', '', '', ''),
+(27, '21313', '1233123', '13123123', '1232131', '123123', '', '2131231', '123231231', '212312', ' 1231231\n', '12312312', ' 1231231\n', '12312312', '213123', '\nmp4'),
+(28, '', '', '', '', '', '', '', '', '', '', '', '', '', '', ''),
+(29, '', '', '', '', '', '', '', '', '', '', '', '', '', '', ''),
+(30, '', '', '', '', '', '', '', '', '', '', '', '', '', '', ''),
+(31, '', '', '', '', '', '', '', '', '', '', '', '', '', '', ''),
+(32, '', '', '', '', '', '', '', '', '', '', '', '', '', '', ''),
+(33, '', '', '', '', '', '', '', '', '', '', '', '', '', '', ''),
+(34, '123123qweas', 'dasdasdas', 'dadadad', 'asdada', 'dadadas', 'asdasd,\ndasdasd,\nasdasda,\ndasda,\ndasda', 'dadasdasddadada', 'asdasdasdasda', 'asdasdadadasdas', ' dasdas\r\n', 'dasdasdadas', 'asdasdsa,\ndasdasda,\ndasdad', 'asdasd', 'Books', 'I'),
+(35, '313123', '213123', '1231231', '1231232', '3123123', '2131231,\n231231231,\n3123', '123123', '213123', '23123123', ' 123123\r\n', '21312313', '312321,\n12312', '21312312', 'Books', 'I'),
+(36, '313123', '213123', '1231231', '1231232', '3123123', '2131231,\n231231231,\n3123', '123123', '213123', '23123123', ' 123123\r\n', '21312313', '312321,\n12312', '21312312', 'Books', 'I'),
+(37, '313123', '213123', '1231231', '1231232', '3123123', '2131231,\n231231231,\n3123', '123123', '213123', '23123123', ' 123123\r\n', '21312313', '312321,\n12312', '21312312', 'Books', 'I'),
+(38, '213123', '13131', '31231231312321', '31313123', '123123123', '213123,\n12312312312,\n312312312', '123123', '123123', '12312312', ' 123123\r\n', '213123', '213123,\n12312312', '21312', 'Books', 'I'),
+(39, 'abv', 'abc', 'abc', 'acb', 'cbas', 'adasd,\nasdas', 'sadasd', 'asdasdas', 'dasda', 'asdasdad \r\n', 'asdasda', 'dadadadas,\nasdas,\ndasdad', 'asdasd', 'Books', 'I'),
+(40, 'abv', 'abc', 'abc', 'acb', 'cbas', 'adasd,\nasdas', 'sadasd', 'asdasdas', 'dasda', 'asdasdad \r\n', 'asdasda', 'dadadadas,\nasdas,\ndasdad', 'asdasd', 'Books', 'I');
 
 -- --------------------------------------------------------
 
@@ -133,7 +168,10 @@ CREATE TABLE `material` (
 --
 
 INSERT INTO `material` (`id`, `Type`) VALUES
-(1, 'Books');
+(1, 'Books'),
+(2, 'mp3'),
+(3, 'mp4'),
+(4, 'magazine');
 
 -- --------------------------------------------------------
 
@@ -252,7 +290,7 @@ INSERT INTO `tblcourse` (`id`, `Course`) VALUES
 
 CREATE TABLE `tblissuedbookdetails` (
   `id` int(11) NOT NULL,
-  `BookId` int(11) DEFAULT NULL,
+  `BookId` varchar(255) DEFAULT NULL,
   `StudentID` varchar(150) DEFAULT NULL,
   `IssuesDate` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
   `expirationDate` varchar(255) NOT NULL,
@@ -266,11 +304,7 @@ CREATE TABLE `tblissuedbookdetails` (
 --
 
 INSERT INTO `tblissuedbookdetails` (`id`, `BookId`, `StudentID`, `IssuesDate`, `expirationDate`, `ReturnDate`, `RetrunStatus`, `fine`) VALUES
-(2, 1003, '2015300391', '2018-10-22 07:11:39', '', NULL, 0, NULL),
-(3, 1009, '2015300456', '2018-10-22 07:12:00', '', '2018-10-22 07:12:43', 1, 50),
-(4, 1017, '2015300789', '2018-10-22 07:12:26', '', '2018-10-22 07:12:37', 1, 0),
-(5, 1018, '2015300391', '2018-10-22 08:09:26', '', NULL, 0, NULL),
-(6, 1020, '2015300391', '2018-10-26 08:59:40', '2018-10-27', NULL, 0, NULL);
+(15, '9780062278982', '2015300391', '2018-11-05 07:09:34', '2018-11-14', NULL, 0, NULL);
 
 -- --------------------------------------------------------
 
@@ -298,7 +332,7 @@ CREATE TABLE `tblstudents` (
 --
 
 INSERT INTO `tblstudents` (`id`, `StudentId`, `user_image`, `FullName`, `EmailId`, `YearLevel`, `Course`, `MobileNumber`, `Password`, `Status`, `RegDate`, `UpdationDate`) VALUES
-(18, '2015300391', 'UserImage/17241-200.png', 'User', 'user@gmail.com', 'College (4th Year)', 'Bachelor of Science in Information Technology', '09275261847', 'ee11cbb19052e40b07aac0ca060c23ee', 1, '2018-10-22 07:06:04', '2018-10-22 07:06:40'),
+(18, '2015300391', 'UserImage/17241-200.png', 'User', 'user@gmail.com', 'College (4th Year)', 'Bachelor of Science in Information Technology', '09275261847', 'ee11cbb19052e40b07aac0ca060c23ee', 1, '2018-10-22 07:06:04', '2018-11-05 07:11:57'),
 (19, '2015300456', 'UserImage/17241-200.png', 'User2', 'user2@gmail.com', 'College (4th Year)', 'Bachelor of Science in Business Administration (Major in Financial Management)', '09271237856', '7e58d63b60197ceb55a1c487989a3720', 1, '2018-10-22 07:10:21', NULL),
 (20, '2015300789', 'UserImage/17241-200.png', 'User3', 'user3@gmail.com', 'College (4th Year)', ' Bachelor of Science in Accounting Technology', '09278946742', '92877af70a45fd6a2ed7fe81e1236b78', 1, '2018-10-22 07:11:10', NULL);
 
@@ -413,7 +447,7 @@ ALTER TABLE `admin`
 -- AUTO_INCREMENT for table `librarybooks`
 --
 ALTER TABLE `librarybooks`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=41;
 
 --
 -- AUTO_INCREMENT for table `library_books`
@@ -425,7 +459,7 @@ ALTER TABLE `library_books`
 -- AUTO_INCREMENT for table `material`
 --
 ALTER TABLE `material`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `table_copies`
@@ -449,7 +483,7 @@ ALTER TABLE `tblcourse`
 -- AUTO_INCREMENT for table `tblissuedbookdetails`
 --
 ALTER TABLE `tblissuedbookdetails`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- AUTO_INCREMENT for table `tblstudents`
