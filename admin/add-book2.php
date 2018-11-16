@@ -23,18 +23,13 @@ if(isset($_POST['addbooks'])) {
 	$Copyright			=	$_POST['txtCopyright'];
 	$PhysicalDesc		=	$_POST['txtDescription'];
 	$Series				=	$_POST['txtSeries'];
-	$Subject1			=	$_POST['txtSubject1'];
-	$Subject2			=	$_POST['txtSubject2'];
-	$Subject3			=	$_POST['txtSubject3'];
-	$Subject4			=	$_POST['txtSubject4'];
+	$NameOfSubject       =   htmlspecialchars(join(",\n",$_POST['Subject']));
 	$Location			=	$_POST['txtLocation'];
 	$Type				=	$_POST['txtType'];
 
 	$sql="INSERT INTO librarybooks(ISBN,Barcode,Callnumber,Title,Subtitle,Author,
-		Edition,Publisher,Copyright,Physicaldesc,Series,Subject_1,Subject_2,Subject_3,
-		Subject_4,Location,Material,Status) VALUES(:ISBN,:Barcode,:Callnumber,:Title,:Subtitle,:Author,
-		:Edition,:Publisher,:Copyright,:Physicaldesc,:Series,:Subject_1,:Subject_2 ,:Subject_3, 
-		:Subject_4,:Location,:Material,'I')";
+		Edition,Publisher,Copyright,Physicaldesc,Series,Subject_1,Location,Material,Status) VALUES(:ISBN,:Barcode,:Callnumber,:Title,:Subtitle,:Author,
+		:Edition,:Publisher,:Copyright,:Physicaldesc,:Series,:Subject,:Location,:Material,'I')";
 
 	$query = $dbh->prepare($sql);
 	
@@ -48,10 +43,7 @@ if(isset($_POST['addbooks'])) {
 	$query->bindParam(':Copyright'		 ,	$Copyright,		 PDO::PARAM_STR);
 	$query->bindParam(':Physicaldesc' 	 ,	$PhysicalDesc,	 PDO::PARAM_STR);
 	$query->bindParam(':Series'	 		 ,	$Series,	 	 PDO::PARAM_STR);
-	$query->bindParam(':Subject_1'	 	 ,	$Subject1,	 	 PDO::PARAM_STR);
-	$query->bindParam(':Subject_2'	 	 ,	$Subject2,	 	 PDO::PARAM_STR);
-	$query->bindParam(':Subject_3'	 	 ,	$Subject3,	 	 PDO::PARAM_STR);
-	$query->bindParam(':Subject_4'	 	 ,	$Subject4,		 PDO::PARAM_STR);
+	$query->bindParam(':Subject'	 	 ,	$NameOfSubject,	 PDO::PARAM_STR);
 	$query->bindParam(':Location'	 	 ,	$Location,	 	 PDO::PARAM_STR);
 	$query->bindParam(':Material'	 	 ,	$Type,			 PDO::PARAM_STR);
 	$query->bindParam(':Author'	 	 	 ,	$NameOfAuthor,	 PDO::PARAM_STR);
