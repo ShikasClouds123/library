@@ -60,17 +60,17 @@ header('location:index.php');
 <style>
 .button {
   border-radius: 4px;
-  background-color: #000;
+  background-color: #193654;
   border: none;
   color: #FFFFFF;
   text-align: center;
   font-size: 16px;
   padding: 10px;
-  width: 90px;
+  width: 120px;
   transition: all 0.5s;
   cursor: pointer;
   margin: 2px;
-  font-family: Comic Sans MS;
+  font-family: Franklin Gothic;
 }
 
 .button span {

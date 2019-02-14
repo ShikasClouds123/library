@@ -58,7 +58,7 @@ echo '<script>alert("Your profile has been updated")</script>';
 <style>
 .button {
   border-radius: 4px;
-  background-color: #000;
+  background-color: #193654;
   border: none;
   color: #FFFFFF;
   text-align: center;
@@ -68,7 +68,7 @@ echo '<script>alert("Your profile has been updated")</script>';
   transition: all 0.5s;
   cursor: pointer;
   margin: 2px;
-  font-family: Comic Sans MS;
+  font-family: Franklin Gothic;
 }
 
 .button span {
@@ -132,46 +132,113 @@ foreach($students as $student)
 {               ?>  
 
 <div class="form-group">
-	<label>Profile Picture : </label>
-	<img src="<?php echo htmlentities($student->user_image);?>" class="img-responsive" style="width: 150px; height: 150px;" />
+  <label>Profile Picture : </label>
+  <img src="<?php echo htmlentities($student->user_image);?>" class="img-responsive" style="width: 150px; height: 150px;" />
 </div>
 
 <div class="form-group">
-	<label>Student ID : </label>
-	<?php echo htmlentities($student->StudentId);?>
+  <label>Student ID : </label>
+  <?php echo htmlentities($student->StudentId);?>
 </div>
 
 <div class="form-group">
-	<label>Year Level : </label>
-	<?php echo htmlentities($student->YearLevel);?>
+  <label>Year Level : </label>
+  <?php echo htmlentities($student->YearLevel);?>
 </div>
 
 <div class="form-group">
-	<label>Course : </label>
-	<?php echo htmlentities($student->Course);?>
+  <label>Course : </label>
+  <?php echo htmlentities($student->Course);?>
 </div>
 
 <div class="form-group">
-	<label>Reg Date : </label>
-	<?php echo htmlentities($student->RegDate);?>
+  <label>Reg Date : </label>
+  <?php echo htmlentities($student->RegDate);?>
 </div>
 
 <div class="form-group">
-	<label>Last Updation Date : </label>
-	<?php echo htmlentities($student->UpdationDate ?: 'N/A');?>
+  <label>Last Updation Date : </label>
+  <?php echo htmlentities($student->UpdationDate ?: 'N/A');?>
 </div>
 
 
 <div class="form-group">
-	<label>Profile Status : </label>
-	<?php if($student->Status==1){?>
-		<span style="color: green">Active</span>
-	<?php } else { ?>
-		<span style="color: red">Blocked</span>
-	<?php }?>
+  <label>Profile Status : </label>
+  <?php if($student->Status==1){?>
+    <span style="color: green">Active</span>
+  <?php } else { ?>
+    <span style="color: red">Blocked</span>
+  <?php }?>
+</div>
+
+
+<div class="form-group">
+<label>Enter Full Name</label>
+<input class="form-control" type="text" name="fullname" value="<?php echo htmlentities($student->FullName);?>" autocomplete="off" required />
+</div>
+
+
+<div class="form-group">
+<label>Mobile Number :</label>
+<input class="form-control" type="text" name="mobileno" maxlength="11" value="<?php echo htmlentities($student->MobileNumber);?>" autocomplete="off" required />
+</div>
+                                        
+<div class="form-group">
+<label>Enter Email</label>
+<input class="form-control" type="email" name="email" id="emailid" value="<?php echo htmlentities($student->EmailId);?>"  autocomplete="off" required readonly />
 </div>
 <?php }} ?>
-</form>
+
+<div class="form-group">
+<label>Enter Course<span style="color:red;">*</span></label>
+<select class="form-control" name="Course" required="required">
+<option value="<?php echo htmlentities($student->Course); ?>"> <?php echo htmlentities($student->Course); ?> </option>
+<?php 
+  $sql = "SELECT * from  tblcourse";
+  $query = $dbh -> prepare($sql);
+  $query->execute();
+  $results=$query->fetchAll(PDO::FETCH_OBJ);
+  $cnt=1;
+  if($query->rowCount() > 0)
+  {
+  foreach($results as $result)
+  {               ?>  
+  <option value="<?php echo htmlentities($result->Course);?>">
+  <?php echo htmlentities($result->Course);?></option>
+ <?php }} ?> 
+</select>
+</div>
+
+
+<div class="form-group">
+<label>Enter Year Level<span style="color:red;">*</span></label>
+<select class="form-control" name="YearLevel" required>
+<option value="<?php echo htmlentities($students[0]->YearLevel); ?>"> 
+<?php echo htmlentities($students[0]->YearLevel); ?> </option>
+
+<?php 
+
+  $sql = "SELECT * from  tblyearlevel";
+  $query = $dbh -> prepare($sql);
+  $query->execute();
+  $YearLevel=$query->fetchAll(PDO::FETCH_OBJ);
+  $cnt=1;
+  foreach($YearLevel as $result){  
+      $result = htmlentities($result->YearLevel);
+?>
+
+  <option value="<?php echo $result?>">
+    <?php echo $result ?>
+  </option>
+  
+<?php } ?>
+ 
+</select>
+</div>
+                              
+<button type="submit" name="update" class="button" id="submit"><span>Update Now</span></button>
+
+                                    </form>
                             </div>
                         </div>
                             </div>
@@ -188,3 +255,4 @@ foreach($students as $student)
 </body>
 </html>
 <?php } ?>
+
