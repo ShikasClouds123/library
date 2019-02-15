@@ -7,15 +7,16 @@ if(strlen($_SESSION['alogin'])==0)
 header('location:index.php');
 }
 else{ 
+//code for deletion of students
 if(isset($_GET['del']))
 {
-$ID=$_GET['del'];
-$sql = "delete from library_books  WHERE ID=:ID";
+$id=$_GET['del'];
+$sql = "delete from librarybooks  WHERE id=:id";
 $query = $dbh->prepare($sql);
 $query -> bindParam(':id',$id, PDO::PARAM_STR);
 $query -> execute();
 $_SESSION['delmsg']="Category deleted scuccessfully ";
-header('location:manage-books.php');
+header('location:books-masterlist.php');
 
 }
 
@@ -168,6 +169,7 @@ header('location:manage-books.php');
 											<th>Location</th>
 											<th>Material</th>
 											<th>Status</th> 
+											<th>Action</th> 
                                     </thead>
                                     <tbody>
 <?php $sql = 	"SELECT * FROM librarybooks";
@@ -206,6 +208,10 @@ foreach($results as $result)
 												}
                                             ?>
 											</td>	
+											<td class="center">
+												<a href="books-masterlist.php?del=<?php echo htmlentities($result->id);?>" onclick="return confirm('Are you sure you want to delete this student?');"> 
+												<button class="btn btn-danger"> Delete</button> 
+										   </td>
                                         </tr>
  <?php $cnt=$cnt+1;}} ?>                                      
                                     </tbody>

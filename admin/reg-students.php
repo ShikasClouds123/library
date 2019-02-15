@@ -36,6 +36,18 @@ $query -> execute();
 header('location:reg-students.php');
 }
 
+//code for deletion of students
+if(isset($_GET['del']))
+{
+$id=$_GET['del'];
+$sql = "delete from tblstudents  WHERE id=:id";
+$query = $dbh->prepare($sql);
+$query -> bindParam(':id',$id, PDO::PARAM_STR);
+$query -> execute();
+$_SESSION['delmsg']="Category deleted scuccessfully ";
+header('location:reg-students.php');
+
+}
 
     ?>
 <!DOCTYPE html>
@@ -93,6 +105,7 @@ header('location:reg-students.php');
                                             <th>Reg Date</th>
                                             <th>Status</th>
                                             <th>Action</th>
+											<th>Deletion</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -111,27 +124,40 @@ foreach($results as $result)
                                             <td class="center"><?php echo htmlentities($result->FullName);?></td>
                                             <td class="center"><?php echo htmlentities($result->EmailId);?></td>
                                             <td class="center"><?php echo htmlentities($result->MobileNumber);?></td>
-                                             <td class="center"><?php echo htmlentities($result->RegDate);?></td>
-                                            <td class="center"><?php if($result->Status==1)
-                                            {
-                                                echo htmlentities("Active");
-                                            } else {
-
-
-                                            echo htmlentities("Blocked");
-}
-                                            ?></td>
+                                            <td class="center"><?php echo htmlentities($result->RegDate);?></td>
                                             <td class="center">
-											
-<?php if($result->Status==1)
- {?>
-<a href="reg-students.php?inid=<?php echo htmlentities($result->id);?>" onclick="return confirm('Are you sure you want to block this student?');" >  <button class="btn btn-danger"> Inactive</button>
-<?php } else {?>
-
-                                            <a href="reg-students.php?id=<?php echo htmlentities($result->id);?>" onclick="return confirm('Are you sure you want to active this student?');"> <button class="btn btn-primary"> Active</button> 
-                                            <?php } ?>
-                                          
-                                            </td>
+												<?php if($result->Status==1)
+												{
+													echo htmlentities("Active");
+												} 
+												else 
+												{
+													echo htmlentities("Blocked");
+												}
+												?>
+											</td>
+                                            <td class="center">
+												<?php if($result->Status==1)
+												{
+												?>
+												<a href="reg-students.php?inid=<?php echo htmlentities($result->id);?>" onclick="return confirm('Are you sure you want to block this student?');" >  
+												<button class="btn btn-danger"> Inactive</button>
+												<?php 
+												} 
+												else 
+												{
+												?>
+												<a href="reg-students.php?id=<?php echo htmlentities($result->id);?>" onclick="return confirm('Are you sure you want to active this student?');"> 
+												<button class="btn btn-primary"> Active</button> 
+												<?php 
+												} 
+												?>
+                                           </td>
+										   <td class="center">
+												<a href="reg-students.php?del=<?php echo htmlentities($result->id);?>" onclick="return confirm('Are you sure you want to delete this student?');"> 
+												<button class="btn btn-danger"> Delete</button> 
+										   </td>
+										   
                                         </tr>
  <?php $cnt=$cnt+1;}} ?>                                      
                                     </tbody>
