@@ -13,11 +13,13 @@ $_SESSION['login']='';
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
     <meta name="description" content="" />
     <meta name="author" content="" />
-    <title>Online Library Management System | </title>
+    <title>Online Library Management System | Manage Books</title>
     <!-- BOOTSTRAP CORE STYLE  -->
     <link href="assets/css/bootstrap6.css" rel="stylesheet" />
     <!-- FONT AWESOME STYLE  -->
     <link href="assets/css/font-awesome.css" rel="stylesheet" />
+    <!-- DATATABLE STYLE  -->
+    <link href="assets/js/dataTables/dataTables.bootstrap.css" rel="stylesheet" />
     <!-- CUSTOM STYLE  -->
     <link href="assets/css/style7.css" rel="stylesheet" />
     <!-- GOOGLE FONT -->
@@ -26,60 +28,63 @@ $_SESSION['login']='';
 	<link href="assets/css/animate.css" rel="stylesheet" />
 
 </head>
-<style>
-.button {
-  border-radius: 4px;
-  background-color: #000;
-  border: none;
-  color: #FFFFFF;
-  text-align: center;
-  font-size: 16px;
-  padding: 10px;
-  width: 110px;
-  transition: all 0.5s;
-  cursor: pointer;
-  margin: 2px;
-  font-family: Comic Sans MS;
-}
-
-.button span {
-  cursor: pointer;
-  display: inline-block;
-  position: relative;
-  transition: 0.5s;
-}
-
-.button span:after {
-  content: '\00bb';
-  position: absolute;
-  opacity: 0;
-  top: 0;
-  right: -20px;
-  transition: 0.5s;
-}
-
-.button:hover span {
-  padding-right: 25px;
-}
-
-.button:hover span:after {
-  opacity: 1;
-  right: 0;
-}
-</style>
 <body>
-    <!------MENU SECTION START-->
+      <!------MENU SECTION START-->
 <?php include('includes/header.php');?>
 <!-- MENU SECTION END-->
-<div class="content-wrapper">
-<div class="container">
-<div class="row pad-botm">
-<div class="col-md-12">
-<h4 class="header-line">Searching</h4>
+    <div class="content-wrapper">
+         <div class="container">
+        <div class="row pad-botm">
+            <div class="col-md-12">
+                <h4 class="header-line">Search Books</h4>
+    </div>
+     <div class="row">
+    <?php if($_SESSION['error']!="")
+    {?>
+<div class="col-md-6">
+<div class="alert alert-danger" >
+ <strong>Error :</strong> 
+ <?php echo htmlentities($_SESSION['error']);?>
+<?php echo htmlentities($_SESSION['error']="");?>
 </div>
 </div>
+<?php } ?>
+<?php if($_SESSION['msg']!="")
+{?>
+<div class="col-md-6">
+<div class="alert alert-success" >
+ <strong>Success :</strong> 
+ <?php echo htmlentities($_SESSION['msg']);?>
+<?php echo htmlentities($_SESSION['msg']="");?>
+</div>
+</div>
+<?php } ?>
+<?php if($_SESSION['updatemsg']!="")
+{?>
+<div class="col-md-6">
+<div class="alert alert-success" >
+ <strong>Success :</strong> 
+ <?php echo htmlentities($_SESSION['updatemsg']);?>
+<?php echo htmlentities($_SESSION['updatemsg']="");?>
+</div>
+</div>
+<?php } ?>
 
-<div class="row">
+
+   <?php if($_SESSION['delmsg']!="")
+    {?>
+<div class="col-md-6">
+<div class="alert alert-success" >
+ <strong>Success :</strong> 
+ <?php echo htmlentities($_SESSION['delmsg']);?>
+<?php echo htmlentities($_SESSION['delmsg']="");?>
+</div>
+</div>
+<?php } ?>
+
+</div>
+</div>
+           <div class="row">
                 <div class="col-md-12">
                   
                     <!-- Advanced Tables -->
@@ -92,23 +97,23 @@ $_SESSION['login']='';
                                   
                                     <thead>
                                         <tr>
-											<th>#</th>
-										    <th>ISBN</th>
+                                            <th>#</th>
+                                            <th>ISBN</th>
                                             <th>Barcode</th>
                                             <th>Callnumber</th>
-											<th>Title</th>
-											<th>Subtitle</th>
-											<th>Author</th>
-											<th>Edition</th>
-											<th>Publisher</th>
-											<th>Copyright</th>
-                                           	<th>Physical Description</th>
-											<th>Series</th> 
-											<th>Subject</th>   
-											<th>Location</th>
-											<th>Material</th>
-											<th>Available Books</th> 
-											<th>Status</th> 
+                                            <th>Title</th>
+                                            <th>Subtitle</th>
+                                            <th>Author</th>
+                                            <th>Edition</th>
+                                            <th>Publisher</th>
+                                            <th>Copyright</th>
+                                            <th>Physical Description</th>
+                                            <th>Series</th> 
+                                            <th>Subject</th>   
+                                            <th>Location</th>
+                                            <th>Material</th>
+                                            <th>Available Books</th> 
+                                            <th>Status</th> 
                                     </thead>
                                     <tbody>
 <?php $sql = 	"SELECT *, COUNT(ISBN) as 'AvailableBooks' FROM librarybooks WHERE Status = 'I' GROUP BY ISBN";
@@ -171,12 +176,15 @@ foreach($results as $result)
                     <!--End Advanced Tables -->
                 </div>
             </div>
-             </div>
-           
-             
-</div>
-</div>
-    <?php include('includes/footer.php');?>
+            </div>
+
+
+            
+    </div>
+    </div>
+
+     <!-- CONTENT-WRAPPER SECTION END-->
+  <?php include('includes/footer.php');?>
       <!-- FOOTER SECTION END-->
     <!-- JAVASCRIPT FILES PLACED AT THE BOTTOM TO REDUCE THE LOADING TIME  -->
     <!-- CORE JQUERY  -->

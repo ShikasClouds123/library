@@ -146,30 +146,34 @@ header('location:books-masterlist.php');
             
 <div class="row">
                 <div class="col-md-12">
+                  
                     <!-- Advanced Tables -->
                     <div class="panel panel-default">
-                        <div class="panel-body" style="overflow-x: auto;">
+                     <div class="panel-heading">
+                           Master List
+                </div>                        <div class="panel-body" style="overflow-x: auto">
                             <div class="table-responsive">
                                 <table class="table table-striped table-bordered table-hover" id="dataTables-example">
+                                  
                                     <thead>
                                         <tr>
-											<th>#</th>
-										    <th>ISBN</th>
+                      <th>#</th>
+                        <th>ISBN</th>
                                             <th>Barcode</th>
                                             <th>Callnumber</th>
-											<th>Title</th>
-											<th>Subtitle</th>
-											<th>Author</th>
-											<th>Edition</th>
-											<th>Publisher</th>
-											<th>Copyright</th>
-                                           	<th>Physical Description</th>
-											<th>Series</th> 
-											<th>Subject</th>   
-											<th>Location</th>
-											<th>Material</th>
-											<th>Status</th> 
-											<th>Action</th> 
+                      <th>Title</th>
+                      <th>Subtitle</th>
+                      <th>Author</th>
+                      <th>Edition</th>
+                      <th>Publisher</th>
+                      <th>Copyright</th>
+                                            <th>Physical Description</th>
+                      <th>Series</th> 
+                      <th>Subject</th>   
+                      <th>Location</th>
+                      <th>Material</th>
+                      <th>Available Books</th> 
+                      <th>Status</th> 
                                     </thead>
                                     <tbody>
 <?php $sql = 	"SELECT * FROM librarybooks";

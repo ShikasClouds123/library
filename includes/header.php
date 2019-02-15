@@ -61,7 +61,7 @@
                                 <ul class="dropdown-menu" role="menu" aria-labelledby="ddlmenuItem">
                                     <li role="presentation"><a role="menuitem" tabindex="-1" href="my-profile.php">My Profile</a></li>
                                     <li role="presentation"><a role="menuitem" tabindex="-1" href="change-password.php">Change Password</a></li>
-                                    <li role="presentation"><a role="menuitem" tabindex="-1" href="upload.php">Change Profile Picture</a></li>
+                                    <!--<li role="presentation"><a role="menuitem" tabindex="-1" href="upload.php">Change Profile Picture</a></li>--->
                                 </ul>
                             </li>
 							<li><a href="search.php">Search Books</a></li>

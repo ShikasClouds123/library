@@ -91,29 +91,31 @@ header('location:index.php');
                   
                     <!-- Advanced Tables -->
                     <div class="panel panel-default">
-                        <div class="panel-body" style="overflow-x: auto">
+                     <div class="panel-heading">
+                           Available Books 
+                </div>                        <div class="panel-body" style="overflow-x: auto">
                             <div class="table-responsive">
                                 <table class="table table-striped table-bordered table-hover" id="dataTables-example">
                                   
                                     <thead>
                                         <tr>
-											<th>#</th>
-										    <th>ISBN</th>
+                                            <th>#</th>
+                                            <th>ISBN</th>
                                             <th>Barcode</th>
                                             <th>Callnumber</th>
-											<th>Title</th>
-											<th>Subtitle</th>
-											<th>Author</th>
-											<th>Edition</th>
-											<th>Publisher</th>
-											<th>Copyright</th>
-                                           	<th>Physical Description</th>
-											<th>Series</th> 
-											<th>Subject</th>   
-											<th>Location</th>
-											<th>Material</th>
-											<th>Available Books</th> 
-											<th>Status</th> 
+                                            <th>Title</th>
+                                            <th>Subtitle</th>
+                                            <th>Author</th>
+                                            <th>Edition</th>
+                                            <th>Publisher</th>
+                                            <th>Copyright</th>
+                                            <th>Physical Description</th>
+                                            <th>Series</th> 
+                                            <th>Subject</th>   
+                                            <th>Location</th>
+                                            <th>Material</th>
+                                            <th>Available Books</th> 
+                                            <th>Status</th> 
                                     </thead>
                                     <tbody>
 <?php $sql = 	"SELECT *, COUNT(ISBN) as 'AvailableBooks' FROM librarybooks WHERE Status = 'I' GROUP BY ISBN";
