@@ -8,9 +8,25 @@ if(strlen($_SESSION['login']) == 0)
 }
 else
 { 
-	if(isset($_POST['update']))
-	{    
+  if(isset($_FILES['profile_picture']) && $_FILES['profile_picture']['size'] > 0) 
+  {
+    //Save the picture
+    $destination = 'UserImage/'.$_FILES['profile_picture']['name'];
+    move_uploaded_file($_FILES['profile_picture']['tmp_name'], $destination);
 
+    //Update the database
+    $sql='UPDATE tblstudents 
+          SET user_image=:ProfilePicture 
+          WHERE StudentId=:sid';
+    $query = $dbh->prepare($sql);
+    $query->bindParam(':ProfilePicture', $destination, PDO::PARAM_STR);
+    $query->bindParam(':sid', $_POST['student_id'], PDO::PARAM_STR);
+    $query->execute();
+
+    echo '<script>alert("Your profile picture has been updated")</script>';
+  }
+	else if(isset($_POST['update']))
+	{    
 
 $sid=$_SESSION['stdid'];  
 $fname=$_POST['fullname'];
@@ -18,7 +34,12 @@ $mobileno=$_POST['mobileno'];
 $Course=$_POST['Course'];
 $YearLevel=$_POST['YearLevel'];
 
-$sql="update tblstudents set FullName=:fname,MobileNumber=:mobileno,Course=:Course,YearLevel=:YearLevel where StudentId=:sid";
+$sql="UPDATE tblstudents 
+  SET FullName=:fname, 
+  MobileNumber=:mobileno, 
+  Course=:Course, 
+  YearLevel=:YearLevel 
+  WHERE StudentId=:sid";
 $query = $dbh->prepare($sql);
 $query->bindParam(':sid',$sid,PDO::PARAM_STR);
 $query->bindParam(':fname',$fname,PDO::PARAM_STR);
@@ -109,6 +130,7 @@ echo '<script>alert("Your profile has been updated")</script>';
                             </div>
 
         </div>
+
              <div class="row">
            
 <div class="col-md-9 col-md-offset-1">
@@ -116,8 +138,7 @@ echo '<script>alert("Your profile has been updated")</script>';
                         <div class="panel-heading">
                            My Profile
                         </div>
-                        <div class="panel-body">
-                            <form name="signup" method="post">
+                        <div class="panel-body">  
 <?php 
 $sid=$_SESSION['stdid'];
 $sql="SELECT StudentId,user_image,FullName,EmailId,YearLevel,Course,MobileNumber,RegDate,UpdationDate,Status from  tblstudents  where StudentId=:sid ";
@@ -131,11 +152,18 @@ if($query->rowCount() > 0)
 foreach($students as $student)
 {               ?>  
 
-<div class="form-group">
-  <label>Profile Picture : </label>
-  <img src="<?php echo htmlentities($student->user_image);?>" class="img-responsive" style="width: 150px; height: 150px;" />
-</div>
+<form name="signup" method="POST" enctype="multipart/form-data">
+  <div class="form-group">
+    <label>Profile Picture : </label>
+    <img src="<?php echo htmlentities($student->user_image);?>" class="img-responsive" style="width: 150px; height: 150px;" />
+    <input class="form-control" type="file" name="profile_picture" />
+    <input type="hidden" name="student_id" value="<?php echo $sid; ?>">
+    <input type="submit" class="button" value="Update Picture">
+  </div>
+</form>
 
+<form name="signup" method="POST">
+                            
 <div class="form-group">
   <label>Student ID : </label>
   <?php echo htmlentities($student->StudentId);?>

@@ -52,3 +52,65 @@ if(isset($_POST['addbooks'])) {
 
 	return;
 }
+else if(isset($_POST['updatebook'])) {	
+
+	$number = count(array_filter($_POST["Author"])); 
+
+	if($number < 1)
+	{ 
+		return;
+	}
+
+	//Values
+	$Barcode			=	$_POST['txtBarcode'];
+	$ISBN				=	$_POST['txtISBN'];
+	$Callnumber			=	$_POST['txtCallnumber'];
+	$Title				=	$_POST['txtBookTitle'];
+	$Subtitle			=	$_POST['txtSubtitle'];
+	$NameOfAuthor       =   htmlspecialchars(join(",\n",$_POST['Author']));
+	$Edition			=	$_POST['txtEdition'];
+	$Publisher			=	$_POST['txtPublisher'];
+	$Copyright			=	$_POST['txtCopyright'];
+	$PhysicalDesc		=	$_POST['txtDescription'];
+	$Series				=	$_POST['txtSeries'];
+	$NameOfSubject       =   htmlspecialchars(join(",\n",$_POST['Subject']));
+	$Location			=	$_POST['txtLocation'];
+	$Type				=	$_POST['txtType'];
+
+	$sql='UPDATE librarybooks
+		SET ISBN 	= :ISBN,
+		Callnumber 	= :Callnumber,
+		Title 		= :Title, 
+		Subtitle 	= :Subtitle,
+		Author 		= :Author,
+		Edition 	= :Edition,
+		Publisher 	= :Publisher,
+		Copyright= :Copyright,
+		Physicaldesc= :Physicaldesc,
+		Series 		= :Series,
+		Subject_1	= :Subject_1,
+		Location = :Location,
+		Material	= :Material
+		WHERE Barcode = :Barcode';
+
+	$query = $dbh->prepare($sql);
+	
+	$query->bindParam(':ISBN'			 ,	$ISBN,			 PDO::PARAM_STR);
+	$query->bindParam(':Barcode'		 ,	$Barcode,		 PDO::PARAM_STR);
+	$query->bindParam(':Callnumber'		 ,	$Callnumber,	 PDO::PARAM_STR);
+	$query->bindParam(':Title'			 ,	$Title,	 	 	 PDO::PARAM_STR);
+	$query->bindParam(':Subtitle'	 	 ,	$Subtitle,	 	 PDO::PARAM_STR);
+	$query->bindParam(':Edition'		 ,	$Edition,	 	 PDO::PARAM_STR);
+	$query->bindParam(':Publisher'		 ,	$Publisher,		 PDO::PARAM_STR);
+	$query->bindParam(':Copyright'		 ,	$Copyright,		 PDO::PARAM_STR);
+	$query->bindParam(':Physicaldesc' 	 ,	$PhysicalDesc,	 PDO::PARAM_STR);
+	$query->bindParam(':Series'	 		 ,	$Series,	 	 PDO::PARAM_STR);
+	$query->bindParam(':Subject_1'	 	 ,	$NameOfSubject,	 PDO::PARAM_STR);
+	$query->bindParam(':Location'	 	 ,	$Location,	 	 PDO::PARAM_STR);
+	$query->bindParam(':Material'	 	 ,	$Type,			 PDO::PARAM_STR);
+	$query->bindParam(':Author'	 	 	 ,	$NameOfAuthor,	 PDO::PARAM_STR);
+
+	$query->execute();
+	
+	return;
+}
