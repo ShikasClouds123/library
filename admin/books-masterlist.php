@@ -158,16 +158,17 @@ header('location:books-masterlist.php');
                                     <thead>
                                         <tr>
                       <th>#</th>
-                        <th>ISBN</th>
-                                            <th>Barcode</th>
-                                            <th>Callnumber</th>
+                      <th>ISBN</th>
+                      <th>Barcode</th>
+                      <th>Callnumber</th>
                       <th>Title</th>
                       <th>Subtitle</th>
                       <th>Author</th>
                       <th>Edition</th>
                       <th>Publisher</th>
+                      <th>Place of Publication</th>
                       <th>Copyright</th>
-                                            <th>Physical Description</th>
+                      <th>Physical Description</th>
                       <th>Series</th> 
                       <th>Subject</th>   
                       <th>Location</th>
@@ -196,6 +197,7 @@ foreach($results as $result)
 											<td class="center"><?php echo htmlentities($result->Author);?></td>
 											<td class="center"><?php echo htmlentities($result->Edition);?></td>
 											<td class="center"><?php echo htmlentities($result->Publisher);?></td>
+                      <td class="center"><?php echo htmlentities($result->Placeofpublication);?></td>
 											<td class="center"><?php echo htmlentities($result->Copyright);?></td>
 											<td class="center"><?php echo htmlentities($result->Physicaldesc);?></td>
 											<td class="center"><?php echo htmlentities($result->Series);?></td>
@@ -215,7 +217,7 @@ foreach($results as $result)
 											<td class="center">
                         <a href="/library/admin/update-book.php?Barcode=<?php echo $result->Barcode ?>" class="btn btn-info"> Edit</a> 
 												<a href="books-masterlist.php?del=<?php echo htmlentities($result->id);?>" onclick="return confirm('Are you sure you want to delete this student?');"> 
-                        <button class="btn btn-danger"> Delete</button> 
+                        <button class="btn btn-danger">Delete</button> 
 										   </td>
                                         </tr>
  <?php $cnt=$cnt+1;}} ?>                                      

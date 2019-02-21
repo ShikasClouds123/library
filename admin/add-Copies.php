@@ -129,8 +129,8 @@ Title
 <form method="POST" action="add-Copies.php" enctype="multipart/form-data" role ="form">
 
 <div class="form-group">
-<label>Barcode					<span style="color:red;">*</span>	</label>
-<input class="form-control" placeholder="Barcode" type="text" name="txtBarcode" 	autocomplete="off"  required />
+<label>Barcode</label>
+<input class="form-control" placeholder="Barcode" type="text" name="txtBarcode" 	autocomplete="off"/>
 </div>
 
 <div class="form-group">

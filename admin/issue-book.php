@@ -193,7 +193,7 @@ Issue a New Book
  <div class="form-group">
 
 <select  class="form-control" name="bookdetails" id="get_book_name" readonly>  </select>
-<label>Expiry Date<span style="color:red;">*</span></label>
+<label>Due Date<span style="color:red;">*</span></label>
 <br>
 <input type="date" id="expDate" name="expDate">
 
@@ -232,8 +232,9 @@ Issue a New Book
 											<th>Author</th>
 											<th>Edition</th>
 											<th>Publisher</th>
-											<th>Copyright</th>
-                                           	<th>Physical Description</th>
+											<th>Place of Publication</th>
+                      <th>Copyright</th>
+                      <th>Physical Description</th>
 											<th>Series</th> 
 											<th>Subject</th>   
 											<th>Location</th>
@@ -259,6 +260,7 @@ foreach($results as $result)
 											<td class="center"><?php echo htmlentities($result->Author);?></td>
 											<td class="center"><?php echo htmlentities($result->Edition);?></td>
 											<td class="center"><?php echo htmlentities($result->Publisher);?></td>
+                      <td class="center"><?php echo htmlentities($result->Placeofpublication);?></td>
 											<td class="center"><?php echo htmlentities($result->Copyright);?></td>
 											<td class="center"><?php echo htmlentities($result->Physicaldesc);?></td>
 											<td class="center"><?php echo htmlentities($result->Series);?></td>

@@ -222,8 +222,8 @@ Title
 </div>
 
 <div class="form-group">
-<label>Subtitle					<span style="color:red;">*</span>	</label>
-<input class="form-control" placeholder="Subtitle" type="text" name="txtSubtitle"	autocomplete="off"	required />
+<label>Subtitle</label>
+<input class="form-control" placeholder="Subtitle" type="text" name="txtSubtitle"	autocomplete="off"/>
 </div>
 
 <div class="form-group">
@@ -242,13 +242,18 @@ Title
 
 
 <div class="form-group">
-<label>Edition					<span style="color:red;">*</span>	</label>
-<input class="form-control" placeholder="Edition" type="text" name="txtEdition" 	autocomplete="off"  required />
+<label>Edition</label>
+<input class="form-control" placeholder="Edition" type="text" name="txtEdition" 	autocomplete="off"/>
 </div>
 
 <div class="form-group">
-<label>Publisher				<span style="color:red;">*</span>	</label>
+<label>Publisher<span style="color:red;">*</span>	</label>
 <input class="form-control" placeholder="Publisher" type="text" name="txtPublisher"	autocomplete="off"  required />
+</div>
+
+<div class="form-group">
+<label>Place of Publication<span style="color:red;">*</span> </label>
+<input class="form-control" placeholder="Place of Publication" type="text" name="txtPlace" autocomplete="off"  required />
 </div>
 
 <div class="form-group">
@@ -263,8 +268,8 @@ Title
 </div>
 
 <div class="form-group">
-<label>Series				<span style="color:red;">*</span>	</label>
-<input class="form-control" placeholder="Series" type="text"  name="txtSeries" 			autocomplete="off"  required />
+<label>Series</label>
+<input class="form-control" placeholder="Series" type="text"  name="txtSeries" 			autocomplete="off"/>
 </div>
 
 <div class="form-group">
@@ -306,7 +311,7 @@ foreach($results as $result)
 </select>
 </div>
 
-<button type="submit" name="addbooks" class="button">Add </button>
+<button type="submit" name="addbooks" id="submit" class="button"><span>Add</span></button>
 
 </form>
                             </div>

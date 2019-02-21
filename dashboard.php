@@ -105,7 +105,7 @@ $returnedbooks=$query2->rowCount();
                           Not Returned Books 
                         </div>-->
 
-<div>
+<!--<div>
 <table>
  <tr>
  <th colspan="3"><center>Expiration Guidelines</center></th>
@@ -141,7 +141,7 @@ $returnedbooks=$query2->rowCount();
   
 </table>
 
-                    </div>    
+                    </div>!-->    
         </div>
 
 

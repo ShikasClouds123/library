@@ -20,6 +20,7 @@ if(isset($_POST['addbooks'])) {
 	$NameOfAuthor       =   htmlspecialchars(join(",\n",$_POST['Author']));
 	$Edition			=	$_POST['txtEdition'];
 	$Publisher			=	$_POST['txtPublisher'];
+	$Placeofpublication	=	$_POST['txtPlace'];
 	$Copyright			=	$_POST['txtCopyright'];
 	$PhysicalDesc		=	$_POST['txtDescription'];
 	$Series				=	$_POST['txtSeries'];
@@ -28,8 +29,8 @@ if(isset($_POST['addbooks'])) {
 	$Type				=	$_POST['txtType'];
 
 	$sql="INSERT INTO librarybooks(ISBN,Barcode,Callnumber,Title,Subtitle,Author,
-		Edition,Publisher,Copyright,Physicaldesc,Series,Subject_1,Location,Material,Status) VALUES(:ISBN,:Barcode,:Callnumber,:Title,:Subtitle,:Author,
-		:Edition,:Publisher,:Copyright,:Physicaldesc,:Series,:Subject,:Location,:Material,'I')";
+		Edition,Publisher,PlaceofPublication,Copyright,Physicaldesc,Series,Subject_1,Location,Material,Status) VALUES(:ISBN,:Barcode,:Callnumber,:Title,:Subtitle,:Author,
+		:Edition,:Publisher,:Placeofpublication,:Copyright,:Physicaldesc,:Series,:Subject,:Location,:Material,'I')";
 
 	$query = $dbh->prepare($sql);
 	
@@ -40,6 +41,7 @@ if(isset($_POST['addbooks'])) {
 	$query->bindParam(':Subtitle'	 	 ,	$Subtitle,	 	 PDO::PARAM_STR);
 	$query->bindParam(':Edition'		 ,	$Edition,	 	 PDO::PARAM_STR);
 	$query->bindParam(':Publisher'		 ,	$Publisher,		 PDO::PARAM_STR);
+	$query->bindParam(':Placeofpublication',$Placeofpublication,PDO::PARAM_STR);
 	$query->bindParam(':Copyright'		 ,	$Copyright,		 PDO::PARAM_STR);
 	$query->bindParam(':Physicaldesc' 	 ,	$PhysicalDesc,	 PDO::PARAM_STR);
 	$query->bindParam(':Series'	 		 ,	$Series,	 	 PDO::PARAM_STR);
@@ -70,6 +72,7 @@ else if(isset($_POST['updatebook'])) {
 	$NameOfAuthor       =   htmlspecialchars(join(",\n",$_POST['Author']));
 	$Edition			=	$_POST['txtEdition'];
 	$Publisher			=	$_POST['txtPublisher'];
+	$Placeofpublication	=	$_POST['txtPlace'];
 	$Copyright			=	$_POST['txtCopyright'];
 	$PhysicalDesc		=	$_POST['txtDescription'];
 	$Series				=	$_POST['txtSeries'];
@@ -85,6 +88,7 @@ else if(isset($_POST['updatebook'])) {
 		Author 		= :Author,
 		Edition 	= :Edition,
 		Publisher 	= :Publisher,
+		Placeofpublication 	= :Placeofpublication,
 		Copyright= :Copyright,
 		Physicaldesc= :Physicaldesc,
 		Series 		= :Series,
@@ -102,6 +106,7 @@ else if(isset($_POST['updatebook'])) {
 	$query->bindParam(':Subtitle'	 	 ,	$Subtitle,	 	 PDO::PARAM_STR);
 	$query->bindParam(':Edition'		 ,	$Edition,	 	 PDO::PARAM_STR);
 	$query->bindParam(':Publisher'		 ,	$Publisher,		 PDO::PARAM_STR);
+	$query->bindParam(':Placeofpublication',$Placeofpublication,PDO::PARAM_STR);
 	$query->bindParam(':Copyright'		 ,	$Copyright,		 PDO::PARAM_STR);
 	$query->bindParam(':Physicaldesc' 	 ,	$PhysicalDesc,	 PDO::PARAM_STR);
 	$query->bindParam(':Series'	 		 ,	$Series,	 	 PDO::PARAM_STR);
