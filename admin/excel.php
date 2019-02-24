@@ -2,12 +2,16 @@
 session_start();
 error_reporting(0);
 //include('includes/config.php');
-$connect = mysqli_connect("localhost", "root", "", "library");
+$connect = mysqli_connect("localhost", "root", "");
+mysqli_select_db($connect,'library');
+
 if(strlen($_SESSION['alogin'])==0)
   { 
 header('location:index.php');
 }
 else{
+
+
 if(isset($_POST["submit"]))
 {
  if($_FILES['file']['name'])
@@ -16,6 +20,29 @@ if(isset($_POST["submit"]))
   if($filename[1] == 'csv')
   {
    $handle = fopen($_FILES['file']['tmp_name'], "r");
+
+    $rows   = array_map('str_getcsv', file($_FILES['file']['tmp_name']));
+    $header = array_shift($rows);
+    $csv    = array();
+    $BatchInsert = array();
+    $SQLInsert = array();
+    foreach($rows as $row) {
+      //$row[0] = intval(strtotime(htmlspecialchars($row[0])));
+        $csv[] = array_combine($header, $row);
+
+    }
+  //die (var_dump($csv));
+    foreach ($csv as $rows) {
+      $BatchInsert[]=implode("','",$rows);
+        
+          }
+
+      foreach ($BatchInsert as $value) {
+      $query = "INSERT into librarybooks(ISBN,Barcode,Callnumber,Title,Subtitle,Author,Edition,Publisher,Copyright,Physicaldesc,Series,Subject_1,Subject_2,Subject_3,Subject_4,Location,Material,Status) values ('$value')";
+    /*echo "<pre>";
+    die (var_dump($query));
+    echo "</pre>"; */ 
+/*
    while($data = fgetcsv($handle))
    {
 				$item1 = mysqli_real_escape_string($connect, $data[0]);  
@@ -38,8 +65,11 @@ if(isset($_POST["submit"]))
 				$item18 = mysqli_real_escape_string($connect, $data[17]);
 				
                 $query = "INSERT into librarybooks(ISBN, Barcode, Callnumber, Title, Subtitle, Author, Edition, Publisher, Copyright, Physicaldesc, Series, Subject_1, Subject_2, Subject_3, Subject_4, Location, Material, Status) values('$item1','$item2','$item3','$item4','$item5','$item6','$item7','$item8','$item9','$item10','$item11','$item12','$item13','$item14','$item15','$item16','$item17','$item18')";
+
+*/
                 mysqli_query($connect, $query);
    }
+
    fclose($handle);
    echo "<script>alert('Import done');</script>";
   }
