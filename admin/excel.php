@@ -38,7 +38,7 @@ if(isset($_POST["submit"]))
           }
 
       foreach ($BatchInsert as $value) {
-      $query = "INSERT into librarybooks(ISBN,Barcode,Callnumber,Title,Subtitle,Author,Edition,Publisher,Copyright,Physicaldesc,Series,Subject_1,Subject_2,Subject_3,Subject_4,Location,Material,Status) values ('$value')";
+      $query = "INSERT into librarybooks(ISBN,Barcode,Callnumber,Title,Subtitle,Author,Edition,Publisher,PlaceofPublication,Copyright,Physicaldesc,Series,Subject_1,Subject_2,Subject_3,Subject_4,Location,Material,Status) values ('$value')";
     /*echo "<pre>";
     die (var_dump($query));
     echo "</pre>"; */ 
