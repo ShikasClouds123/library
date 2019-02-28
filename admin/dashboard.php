@@ -48,7 +48,7 @@ else{?>
 
  <div class="col-md-3 col-sm-3 col-xs-6">
                       <div class="alert alert-success back-widget-set text-center">
-                            <i class="fa fa-book fa-5x"></i>
+                            <a href="books-masterlist.php"><i class="fa fa-book fa-5x"></i>
 <?php 
 $sql ="SELECT id from library_books ";
 $query = $dbh -> prepare($sql);
@@ -66,7 +66,7 @@ $listdbooks=$query->rowCount();
             
                     <div class="col-md-3 col-sm-3 col-xs-6">
                       <div class="alert alert-info back-widget-set text-center">
-                            <i class="fa fa-bars fa-5x"></i>
+                             <a href="manage-issued-books.php"><i class="fa fa-bars fa-5x"></i>
 <?php 
 $sql1 ="SELECT id from tblissuedbookdetails ";
 $query1 = $dbh -> prepare($sql1);
@@ -84,7 +84,7 @@ $issuedbooks=$query1->rowCount();
             
                  <div class="col-md-3 col-sm-3 col-xs-6">
                       <div class="alert alert-warning back-widget-set text-center">
-                            <i class="fa fa-recycle fa-5x"></i>
+                            <a href="returned-books.php"><i class="fa fa-recycle fa-5x"></i>
 
 <?php 
 $status=1;
@@ -104,7 +104,7 @@ $returnedbooks=$query2->rowCount();
              <div class="col-md-3 col-sm-3 col-xs-6">
 		
                       <div class="alert alert-danger back-widget-set text-center">
-                            <i class="fa fa-users fa-5x"></i>
+                            <a href="reg-students.php"><i class="fa fa-users fa-5x"></i>
                             <?php 
 $sql3 ="SELECT id from tblstudents ";
 $query3 = $dbh -> prepare($sql3);
@@ -128,7 +128,7 @@ $regstds=$query3->rowCount();
 
  <div class="col-md-3 col-sm-3 col-xs-6">
                       <div class="alert alert-success back-widget-set text-center">
-                            <i class="fa fa-user fa-5x"></i>
+                             <a href="manage-categories.php"><i class="fa fa-user fa-5x"></i>
 <?php 
 $sql4 ="SELECT id from tblauthors ";
 $query4 = $dbh -> prepare($sql4);

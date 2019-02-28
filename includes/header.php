@@ -11,8 +11,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" >
-
+                <a class="navbar">
                     <img src="assets/img/librarymunti.png" />
                 </a>
 
