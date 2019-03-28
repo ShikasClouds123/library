@@ -25,8 +25,11 @@
                 <div class="col-md-12">
                     <div class="navbar-collapse collapse ">
                         <ul id="menu-top" class="nav navbar-nav navbar-right">
+                            <li><a href="usermanual.pdf">User Guide</a></li>
                             <li><a href="dashboard.php" class="active">DASHBOARD</a></li>
 							  <li><a href="excel.php" class="active">EXCEL UPLOAD</a></li>
+                               <li role="presentation"><a role="menuitem" tabindex="-1" href="books-masterlist.php">Master List</a></li>
+                               <li role="presentation"><a role="menuitem" tabindex="-1" href="reg-students.php">Registered Students</a></li>
 							<li>
 								<a href="#" class="dropdown-toggle" id="ddlmenuItem" data-toggle="dropdown"> Students <i class="fa fa-angle-down"></i></a>
                                 <ul class="dropdown-menu" role="menu" aria-labelledby="ddlmenuItem">
@@ -54,19 +57,8 @@
                                 </ul>
                             </li>
 							
-								<li>
-                                <a href="#" class="dropdown-toggle" id="ddlmenuItem" data-toggle="dropdown"> Books Master List <i class="fa fa-angle-down"></i></a>
-                                <ul class="dropdown-menu" role="menu" aria-labelledby="ddlmenuItem">
-									 <li role="presentation"><a role="menuitem" tabindex="-1" href="books-masterlist.php">Master List</a></li>
-                                </ul>
-								</li>
+							
 								
-								<li>
-								<a href="#" class="dropdown-toggle" id="ddlmenuItem" data-toggle="dropdown">Registered Users <i class="fa fa-angle-down"></i></a>
-                                <ul class="dropdown-menu" role="menu" aria-labelledby="ddlmenuItem">
-                                     <li role="presentation"><a role="menuitem" tabindex="-1" href="reg-students.php">Registered Students</a></li>
-                               </ul>
-							   </li>
 							   
 						
   

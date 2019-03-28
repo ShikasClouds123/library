@@ -86,6 +86,11 @@
                             <li><a href="signup.php">User Signup</a></li>
                             <li><a href="index.php">User Login</a></li>
 							<li><a href="Searchbooks.php">Search Books</a></li>
+
+                            <!--<li><a href="signup.php">User Signup</a></li>-->
+                            <!--<li><a href="index.php">User Login</a></li>-->
+							<!--<li><a href="Searchbooks.php">Search Books</a></li>-->
+
                           
 
                         </ul>
