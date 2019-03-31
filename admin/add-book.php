@@ -3,7 +3,7 @@ session_start();
 error_reporting(0);
 include('includes/config.php');
 //$connect = mysqli_connect("localhost", "root", "", "library");
-include('add-book2.php');
+include('includes/add-book-function.php');
 // not logged in 
 
 if(strlen($_SESSION['alogin'])==0)
