@@ -174,7 +174,8 @@ header('location:books-masterlist.php');
                       <th>Location</th>
                       <th>Material</th>
                       <th>Available Books</th> 
-                      <th>Status</th> 
+                      <th>Action</th>
+                      <th>Deletion</th> 
                                     </thead>
                                     <tbody>
 <?php $sql = 	"SELECT * FROM librarybooks";
@@ -215,10 +216,15 @@ foreach($results as $result)
                                             ?>
 											</td>	
 											<td class="center">
-                        <a href="/library/admin/update-book.php?Barcode=<?php echo $result->Barcode ?>" class="btn btn-info"> Edit</a> 
+                        <a href="/library/admin/update-book.php?Barcode=<?php echo $result->Barcode ?>" 
+                          button class="btn btn-primary">Edit</a>
+                        </td>
+                        <td class="center"> 
 												<a href="books-masterlist.php?del=<?php echo htmlentities($result->id);?>" onclick="return confirm('Are you sure you want to delete this student?');"> 
                         <button class="btn btn-danger">Delete</button> 
 										   </td>
+
+
                                         </tr>
  <?php $cnt=$cnt+1;}} ?>                                      
                                     </tbody>
