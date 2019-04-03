@@ -63,11 +63,15 @@
                                     <ul class="dropdown-menu" role="menu" aria-labelledby="ddlmenuItem">
                                         
                                         <li role="presentation">
-                                            <a role="menuitem" tabindex="-1" href="books-masterlist.php">Master List</a>
+                                            <a role="menuitem" tabindex="-1" href="books-available.php">Available Books</a>
                                         </li>
 
                                         <li role="presentation">
                                             <a role="menuitem" tabindex="-1" href="books-unavailable.php">Unavailable Books</a>
+                                        </li>
+
+                                          <li role="presentation">
+                                            <a role="menuitem" tabindex="-1" href="books-masterlist.php">Master List</a>
                                         </li>
                                         
                                     </ul>

@@ -102,14 +102,19 @@ else{
                                             <th>Student Name</th>
                                             <th>Issued Date</th>
                                             <th>Due Date</th>
-                                            <th>Status</th>
                                         </tr>
                                     </thead>
                                     
                                     <tbody>
                                         
                                         <?php 
-                                        $sql = "";
+                                        $sql = "SELECT tblstudents.StudentId,tblstudents.FullName,
+                                                 tblissuedbookdetails.BookId,librarybooks.Title,
+                                                 tblissuedbookdetails.IssuesDate,tblissuedbookdetails.ReturnDate,
+                                                 tblissuedbookdetails.expirationDate,tblissuedbookdetails.id as rid 
+                                                 from tblissuedbookdetails 
+                                                 inner join tblstudents on tblstudents.StudentId=tblissuedbookdetails.StudentId
+                                                 inner join librarybooks on tblissuedbookdetails.BookId = librarybooks.Barcode";
                                         $query = $dbh -> prepare($sql);
                                         $query->execute();
                                         $results=$query->fetchAll(PDO::FETCH_OBJ);
@@ -121,22 +126,13 @@ else{
                                         ?>                                      
                                         <tr class="odd gradeX">
                                             <td class="center"><?php echo htmlentities($cnt);?></td>
+                                            <td class="center"><?php echo htmlentities($result->StudentId);?></td>
                                             <td class="center"><?php echo htmlentities($result->FullName);?></td>
                                             <td class="center"><?php echo htmlentities($result->BookId);?></td>
-                                            <td class="center"><?php echo htmlentities($result->expirationDate);?></td>
+                                            <td class="center"><?php echo htmlentities($result->Title);?></td>
                                             <td class="center"><?php echo htmlentities($result->IssuesDate);?></td>
-                                            <td class="center">
-                                                <?php if($result->ReturnDate=="")
-                                                {
-                                                    echo htmlentities("Not Returned");
-                                                } else {
-                                                    echo htmlentities($result->ReturnDate);
-                                                }
-                                                ?>
-                                            </td>
-                                            <td class="center">
-                                                <a href="update-issue-bookdeails.php?rid=<?php echo htmlentities($result->rid);?>">         <button class="btn btn-primary"><i class="fa fa-edit "></i> Edit</button> 
-                                            </td>
+                                            <td class="center"><?php echo htmlentities($result->ReturnDate);?></td>
+                                            <td class="center"><?php echo htmlentities($result->expirationDate);?></td>
                                         </tr>
                                              <?php $cnt=$cnt+1;}} ?>                                      
                                     </tbody>

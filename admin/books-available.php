@@ -93,7 +93,7 @@ header('location:books-masterlist.php');
          <div class="container">
         <div class="row pad-botm">
             <div class="col-md-12">
-                <h4 class="header-line">Unavailable Books List</h4>
+                <h4 class="header-line">Available Books List</h4>
     </div>
      <div class="row">
     <?php if($_SESSION['error']!="")
@@ -138,7 +138,7 @@ header('location:books-masterlist.php');
                     <!-- Advanced Tables -->
                     <div class="panel panel-default">
                      <div class="panel-heading">
-                           Books List
+                           List
                 </div>                        <div class="panel-body" style="overflow-x: auto">
                             <div class="table-responsive">
                                 <table class="table table-striped table-bordered table-hover" id="dataTables-example">
@@ -158,7 +158,7 @@ header('location:books-masterlist.php');
                                     </thead>
                                     
                                     <tbody>
-                                          <?php $sql = 	"SELECT * FROM `librarybooks` WHERE Status = 'O'";
+                                          <?php $sql = 	"SELECT * FROM `librarybooks` WHERE Status = 'I'";
                                           $query = $dbh -> prepare($sql);
                                           $query->execute();
                                           $results=$query->fetchAll(PDO::FETCH_OBJ);
