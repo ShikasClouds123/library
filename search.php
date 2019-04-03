@@ -118,7 +118,7 @@ header('location:index.php');
                                             <th>Status</th> 
                                     </thead>
                                     <tbody>
-<?php $sql = 	"SELECT *, COUNT(Barcode) as 'AvailableBooks' FROM librarybooks WHERE Status = 'I' GROUP BY Barcode";
+<?php $sql = 	"SELECT *, COUNT(ISBN) as 'AvailableBooks' FROM librarybooks WHERE Status = 'I' GROUP BY ISBN";
 $query = $dbh -> prepare($sql);
 $query->execute();
 $results=$query->fetchAll(PDO::FETCH_OBJ);
