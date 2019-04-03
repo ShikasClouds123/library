@@ -50,7 +50,7 @@ else{?>
                       <div class="alert alert-success back-widget-set text-center">
                             <a href="books-masterlist.php"><i class="fa fa-book fa-5x"></i>
 <?php 
-$sql ="SELECT id from library_books ";
+$sql ="SELECT id from librarybooks ";
 $query = $dbh -> prepare($sql);
 $query->execute();
 $results=$query->fetchAll(PDO::FETCH_OBJ);
@@ -84,7 +84,7 @@ $issuedbooks=$query1->rowCount();
             
                  <div class="col-md-3 col-sm-3 col-xs-6">
                       <div class="alert alert-warning back-widget-set text-center">
-                            <a href="returned-books.php"><i class="fa fa-recycle fa-5x"></i>
+                            <a href="manage-issued-books.php"><i class="fa fa-recycle fa-5x"></i>
 
 <?php 
 $status=1;

@@ -69,7 +69,27 @@ tr:nth-child(even) {
             
                  <div class="col-md-3 col-sm-3 col-xs-6">
                       <div class="alert alert-info back-widget-set text-center">
-                            <a href="issued-books.php"><i class="fa fa-bars fa-5x"></i>
+                            <a href="search.php"><i class="fa fa-book fa-5x"></i>
+                          
+<?php 
+$sql ="SELECT id from librarybooks ";
+$query = $dbh -> prepare($sql);
+$query->execute();
+$results=$query->fetchAll(PDO::FETCH_OBJ);
+$listdbooks=$query->rowCount();
+?>
+
+                            <h3><?php echo htmlentities($listdbooks);?> </h3>
+                            Books Listed
+                        </div>
+                    </div>
+               <div class="col-md-3 col-sm-3 col-xs-6">
+                      <div class="alert alert-warning back-widget-set text-center">
+                            <a href="issued-books.php"><i class="fa fa-recycle fa-5x"></i>
+
+
+
+
 <?php 
 $sid=$_SESSION['stdid'];
 $sql1 ="SELECT id from tblissuedbookdetails where StudentID=:sid";
@@ -79,31 +99,9 @@ $query1->execute();
 $results1=$query1->fetchAll(PDO::FETCH_OBJ);
 $issuedbooks=$query1->rowCount();
 ?>
-
-                            <h3><?php echo htmlentities($issuedbooks);?> </h3>
-                            Borrowed Books
+                            <h3><?php echo htmlentities($issuedbooks);?></h3>
+                          Borrowed/Returned Books 
                         </div>
-                    </div>
-               <!--<div class="col-md-3 col-sm-3 col-xs-6">
-                      <div class="alert alert-warning back-widget-set text-center">
-                            <a href="overdue-books.php"><i class="fa fa-recycle fa-5x"></i>
-
-
-
-<?php 
-$rsts=0;
-$sql2 ="SELECT id from tblissuedbookdetails where StudentID=:sid and RetrunStatus=:rsts";
-$query2 = $dbh -> prepare($sql2);
-$query2->bindParam(':sid',$sid,PDO::PARAM_STR);
-$query2->bindParam(':rsts',$rsts,PDO::PARAM_STR);
-$query2->execute();
-$results2=$query2->fetchAll(PDO::FETCH_OBJ);
-$returnedbooks=$query2->rowCount();
-?>
-
-                            <h3><?php echo htmlentities($returnedbooks);?></h3>
-                          Not Returned Books 
-                        </div>-->
 
 <!--<div>
 <table>
