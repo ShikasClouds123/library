@@ -13,8 +13,8 @@ if(isset($_POST['return']))
 {
 
 $sql = "SELECT tblissuedbookdetails.BookId
-		FROM tblissuedbookdetails
-		WHERE id=:rid";
+		    FROM tblissuedbookdetails
+		    WHERE id=:rid";
 $query = $dbh -> prepare($sql);
 $query->bindParam(':rid',$rid,PDO::PARAM_STR);
 $query->execute();
@@ -23,9 +23,9 @@ $bookId=$query->fetch();
 $fine=$_POST['fine'];
 $rstatus=1;
 $sql="UPDATE tblissuedbookdetails SET fine=:fine,RetrunStatus=:rstatus WHERE id=:rid ; 
-		UPDATE librarybooks
+		  UPDATE librarybooks
 		  SET `Status` = 'I'
-		  WHERE `ISBN` = :barcode;";
+		  WHERE `Barcode` = :barcode;";
 $query = $dbh->prepare($sql);
 $query->bindParam(':rid',$rid,PDO::PARAM_STR);
 $query->bindParam(':fine',$fine,PDO::PARAM_STR);
@@ -58,38 +58,7 @@ header('location:manage-issued-books.php');
     <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css' />
 	<!-- Animation -->
 	<link href="assets/css/animate.css" rel="stylesheet" />
-<script>
-// function for get student name
-function getstudent() {
-$("#loaderIcon").show();
-jQuery.ajax({
-url: "get_student.php",
-data:'studentid='+$("#studentid").val(),
-type: "POST",
-success:function(data){
-$("#get_student_name").html(data);
-$("#loaderIcon").hide();
-},
-error:function (){}
-});
-}
 
-//function for book details
-function getbook() {
-$("#loaderIcon").show();
-jQuery.ajax({
-url: "get_book.php",
-data:'bookid='+$("#bookid").val(),
-type: "POST",
-success:function(data){
-$("#get_book_name").html(data);
-$("#loaderIcon").hide();
-},
-error:function (){}
-});
-}
-
-</script> 
 <style type="text/css">
   .others{
     color:red;
@@ -179,9 +148,6 @@ if($query->rowCount() > 0)
 foreach($results as $result)
 {               ?>                                      
                    
-
-
-
 <div class="form-group">
 <label>Student Name :</label>
 <?php echo htmlentities($result->FullName);?>
@@ -200,28 +166,28 @@ foreach($results as $result)
 
 <div class="form-group">
 <label>Book Returned Date :</label>
-<?php if($result->ReturnDate=="")
-                                            {
-                                                echo htmlentities("Not Return Yet");
-                                            } else {
-
-
-                                            echo htmlentities($result->ReturnDate);
-}
-                                            ?>
+  <?php if($result->ReturnDate=="")
+    {
+      echo htmlentities("Not Return Yet");
+    } else {
+      echo htmlentities($result->ReturnDate);
+    }
+  ?>
 </div>
 
 <div class="form-group">
 <label>Penalty :</label>
-<?php 
-if($result->fine=="")
-{?>
-<input class="form-control" type="text" name="fine" id="fine"  required />
+  <?php 
+  if($result->fine=="")
+  {?>
+  <input class="form-control" type="text" name="fine" id="fine"  required />
 
-<?php }else {
-echo htmlentities($result->fine);
-}
-?>
+  <?php 
+  }
+  else {
+    echo htmlentities($result->fine);
+  }
+  ?>
 </div>
  <?php if($result->RetrunStatus==0){?>
 

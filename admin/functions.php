@@ -1,14 +1,14 @@
 <?php 
 
 if(isset($_POST['add'])){ 
-addcopies();	
+addcopies();    
 }
 
 function addcopies() {
 $servername = "localhost";
 $username = "root";
 $password = "";
-$dbname = "library";
+$dbname = "librarylatest";
 
 // Create connection
 $conn = new mysqli($servername, $username, $password, $dbname);
@@ -17,18 +17,20 @@ if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 } 
 
-$sql = "SELECT * FROM `librarybooks` where ISBN = '" . $_POST['txtType'] . "' LIMIT 1";
+$sql = "SELECT * FROM `librarybooks` where ISBN = '" . $_POST['txtISBN'] . "' LIMIT 1";
 $result = $conn->query($sql);
 
 if ($result->num_rows > 0) {
     // output data of each row
     while($row = $result->fetch_assoc()) {
-	//inserting statement	
-	$sql1 = "INSERT INTO librarybooks (ISBN, Barcode, Callnumber,Title,Subtitle,Author,Edition,Publisher,Copyright,Physicaldesc,Series,Subject_1,Subject_2,Subject_3,Subject_4,Location,Material)
-	VALUES ('" . $_POST['txtType']. "', '" . $_POST['txtBarcode']. "' ,   '" . $row['Callnumber']. "' ,  '" . $row['Title']. "' ,  '" . $row['Subtitle']. "' ,  '" . $row['Author']. "' ,  '" . $row['Edition']. "' ,  
-	'" . $row['Publisher']. "' ,  '" . $row['Copyright']. "' ,  '" . $row['Physicaldesc']. "' ,  '" . $row['Series']. "' ,  '" . $row['Subject_1']. "' ,  '" . $row['Subject_2']. "' ,  '" . $row['Subject_3']. "' ,
-	'" . $row['Subject_4']. "' , '" . $row['Location']. "' , '" . $row['Material']. "')";
-	
+    //inserting statement   
+    $sql1 = "INSERT INTO librarybooks (ISBN, Barcode, Callnumber,Title,Subtitle,Author,Edition,Publisher,Placeofpublication,
+    Copyright,Physicaldesc,Series,Subject_1,Location,Material,Status)
+    VALUES ('" . $_POST['txtISBN']. "', '" . $_POST['txtBarcode']. "' ,   '" . $row['Callnumber']. "' ,  '" . $row['Title']. "' ,  
+    '" . $row['Subtitle']. "' ,  '" . $row['Author']. "' ,  '" . $row['Edition']. "' ,  '" . $row['Publisher']. "' ,
+    '" . $row['Placeofpublication']. "' ,  '" . $row['Copyright']. "' ,  '" . $row['Physicaldesc']. "' ,  '" . $row['Series']. "' ,  
+    '" . $row['Subject_1']. "' ,  '" . $row['Location']. "' ,'" . $row['Material']. "','I')";
+    
 if ($conn->query($sql1) === TRUE) {
     //echo "New record created successfully";
 } else {

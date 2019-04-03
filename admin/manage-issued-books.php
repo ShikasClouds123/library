@@ -104,9 +104,10 @@ else{
                                         </tr>
                                     </thead>
                                     <tbody>
-<?php $sql = "SELECT tblstudents.FullName,tblissuedbookdetails.BookId,tblissuedbookdetails.expirationDate,tblissuedbookdetails.IssuesDate, 
-			tblissuedbookdetails.ReturnDate,tblissuedbookdetails.id as rid from tblissuedbookdetails join tblstudents on 
-			tblstudents.StudentId=tblissuedbookdetails.StudentId order by tblissuedbookdetails.ID desc";
+<?php $sql = "SELECT tblstudents.FullName,tblissuedbookdetails.BookId,tblissuedbookdetails.expirationDate,
+                     tblissuedbookdetails.IssuesDate,tblissuedbookdetails.ReturnDate,tblissuedbookdetails.id 
+                     as rid from tblissuedbookdetails join tblstudents on 
+			         tblstudents.StudentId=tblissuedbookdetails.StudentId order by tblissuedbookdetails.ID desc";
 $query = $dbh -> prepare($sql);
 $query->execute();
 $results=$query->fetchAll(PDO::FETCH_OBJ);

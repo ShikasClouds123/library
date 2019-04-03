@@ -51,9 +51,10 @@ if(isset($_POST['addbooks'])) {
 	$query->bindParam(':Author'	 	 	 ,	$NameOfAuthor,	 PDO::PARAM_STR);
 
 	$query->execute();
-
+	header('location:books-masterlist.php');
 	return;
 }
+
 else if(isset($_POST['updatebook'])) {	
 
 	$number = count(array_filter($_POST["Author"])); 
@@ -116,6 +117,6 @@ else if(isset($_POST['updatebook'])) {
 	$query->bindParam(':Author'	 	 	 ,	$NameOfAuthor,	 PDO::PARAM_STR);
 
 	$query->execute();
-	
+	header('location:books-masterlist.php');
 	return;
 }

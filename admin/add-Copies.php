@@ -7,7 +7,7 @@ include('functions.php');
 
 if(strlen($_SESSION['alogin'])==0)
 {   
-	header('location:index.php');
+	header('location:userlogin.php');
 }
 
 ?>
@@ -129,13 +129,13 @@ Title
 <form method="POST" action="add-Copies.php" enctype="multipart/form-data" role ="form">
 
 <div class="form-group">
-<label>Barcode</label>
-<input class="form-control" placeholder="Barcode" type="text" name="txtBarcode" 	autocomplete="off"/>
+<label>Barcode          <span style="color:red;">*</span> </label>
+<input class="form-control" placeholder="Barcode" type="text" name="txtBarcode"   autocomplete="off"  required />
 </div>
 
 <div class="form-group">
-<label>Book			 	<span style="color:red;">*</span>	</label>
-<select class="form-control"  			name="txtType" 							required >
+<label>Book       <span style="color:red;">*</span> </label>
+<select class="form-control"        name="txtISBN"              required >
 <option value="">Choose Book</option>
 <?php 
 $sql = "SELECT ISBN from  librarybooks GROUP BY ISBN";
@@ -190,7 +190,8 @@ function remove_field(id)
     <!-- BOOTSTRAP SCRIPTS  -->
     <script src="assets/js/bootstrap.js"></script>
       <!-- CUSTOM SCRIPTS  -->
-    <script src="assets/js/custom.js"></script>>
-
+    <script src="assets/js/custom.js"></script>
+</body>
+</html>
 </html>
 

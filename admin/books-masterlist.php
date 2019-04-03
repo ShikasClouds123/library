@@ -156,73 +156,75 @@ header('location:books-masterlist.php');
                                 <table class="table table-striped table-bordered table-hover" id="dataTables-example">
                                   
                                     <thead>
-                                        <tr>
-                      <th>#</th>
-                      <th>ISBN</th>
-                      <th>Barcode</th>
-                      <th>Callnumber</th>
-                      <th>Title</th>
-                      <th>Subtitle</th>
-                      <th>Author</th>
-                      <th>Edition</th>
-                      <th>Publisher</th>
-                      <th>Place of Publication</th>
-                      <th>Copyright</th>
-                      <th>Physical Description</th>
-                      <th>Series</th> 
-                      <th>Subject</th>   
-                      <th>Location</th>
-                      <th>Material</th>
-                      <th>Available Books</th> 
-                      <th>Action</th>
-                      <th>Deletion</th> 
+                                      <tr>
+                                        <th>#</th>
+                                        <th>ISBN</th>
+                                        <th>Barcode</th>
+                                        <th>Callnumber</th>
+                                        <th>Title</th>
+                                        <th>Subtitle</th>
+                                        <th>Author</th>
+                                        <th>Edition</th>
+                                        <th>Publisher</th>
+                                        <th>Place of Publication</th>
+                                        <th>Copyright</th>
+                                        <th>Physical Description</th>
+                                        <th>Series</th> 
+                                        <th>Subject</th>   
+                                        <th>Location</th>
+                                        <th>Material</th>
+                                        <th>Availability</th> 
+                                        <th>Action</th>
+                                        <th>Deletion</th> 
+                                      </tr>
                                     </thead>
+                                    
                                     <tbody>
-<?php $sql = 	"SELECT * FROM librarybooks";
-$query = $dbh -> prepare($sql);
-$query->execute();
-$results=$query->fetchAll(PDO::FETCH_OBJ);
-$cnt=1;
-if($query->rowCount() > 0)
-{
-foreach($results as $result)
-{               
-?>                                      
+                                      <?php $sql = 	"SELECT * FROM librarybooks";
+                                      $query = $dbh -> prepare($sql);
+                                      $query->execute();
+                                      $results=$query->fetchAll(PDO::FETCH_OBJ);
+                                      $cnt=1;
+                                      if($query->rowCount() > 0)
+                                      {
+                                      foreach($results as $result)
+                                      {               
+                                      ?>                                      
                                         <tr class="odd gradeX">
                                             <td class="center"><?php echo htmlentities($cnt);?></td>
-										    <td class="center"><?php echo htmlentities($result->ISBN);?></td>
+										                        <td class="center"><?php echo htmlentities($result->ISBN);?></td>
                                             <td class="center"><?php echo htmlentities($result->Barcode);?></td>
                                             <td class="center"><?php echo htmlentities($result->Callnumber);?></td>
-											<td class="center"><?php echo htmlentities($result->Title);?></td>
-											<td class="center"><?php echo htmlentities($result->Subtitle);?></td>
-											<td class="center"><?php echo htmlentities($result->Author);?></td>
-											<td class="center"><?php echo htmlentities($result->Edition);?></td>
-											<td class="center"><?php echo htmlentities($result->Publisher);?></td>
-                      <td class="center"><?php echo htmlentities($result->Placeofpublication);?></td>
-											<td class="center"><?php echo htmlentities($result->Copyright);?></td>
-											<td class="center"><?php echo htmlentities($result->Physicaldesc);?></td>
-											<td class="center"><?php echo htmlentities($result->Series);?></td>
-											<td class="center"><?php echo htmlentities($result->Subject_1);?></td>
-											<td class="center"><?php echo htmlentities($result->Location);?></td>
-											<td class="center"><?php echo htmlentities($result->Material);?></td>
-											<td class="center"><?php if($result->Status=="I")
-												{
-													echo htmlentities("Available");
-												}
-												else 
-												{
-												echo htmlentities("On Loan");
-												}
-                                            ?>
-											</td>	
-											<td class="center">
-                        <a href="/library/admin/update-book.php?Barcode=<?php echo $result->Barcode ?>" 
-                          button class="btn btn-primary">Edit</a>
-                        </td>
-                        <td class="center"> 
-												<a href="books-masterlist.php?del=<?php echo htmlentities($result->id);?>" onclick="return confirm('Are you sure you want to delete this student?');"> 
-                        <button class="btn btn-danger">Delete</button> 
-										   </td>
+                      											<td class="center"><?php echo htmlentities($result->Title);?></td>
+                      											<td class="center"><?php echo htmlentities($result->Subtitle);?></td>
+                      											<td class="center"><?php echo htmlentities($result->Author);?></td>
+                      											<td class="center"><?php echo htmlentities($result->Edition);?></td>
+                      											<td class="center"><?php echo htmlentities($result->Publisher);?></td>
+                                            <td class="center"><?php echo htmlentities($result->Placeofpublication);?></td>
+                      											<td class="center"><?php echo htmlentities($result->Copyright);?></td>
+                      											<td class="center"><?php echo htmlentities($result->Physicaldesc);?></td>
+                      											<td class="center"><?php echo htmlentities($result->Series);?></td>
+                      											<td class="center"><?php echo htmlentities($result->Subject_1);?></td>
+                      											<td class="center"><?php echo htmlentities($result->Location);?></td>
+                      											<td class="center"><?php echo htmlentities($result->Material);?></td>
+                      											<td class="center"><?php if($result->Status=="I")
+                      												{
+                      													echo htmlentities("Available");
+                      												}
+                      												else 
+                      												{
+                      												echo htmlentities("On Loan");
+                      												}
+                                                                  ?>
+                      											</td>	
+                      											<td class="center">
+                                              <a href="/library/admin/update-book.php?Barcode=<?php echo $result->Barcode ?>" 
+                                                button class="btn btn-primary">Edit</a>
+                                            </td>
+                                            <td class="center"> 
+                      												<a href="books-masterlist.php?del=<?php echo htmlentities($result->id);?>" onclick="return confirm('Are you sure you want to delete this Book?');"> 
+                                              <button class="btn btn-danger">Delete</button> 
+                      										  </td>
 
 
                                         </tr>
