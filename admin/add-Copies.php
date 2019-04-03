@@ -177,13 +177,20 @@ function remove_field(id)
 }
 </script>
 
-
-<!--Footer-->
-<?php include('includes/footer.php');?>
-<script src="assets/js/jquery-1.10.2.js"></script>
-<script src="assets/js/bootstrap.js"></script>
-<script src="assets/js/custom.js"></script>
+</div>
 
 </body>
+<!--Footer-->
+     <!-- CONTENT-WRAPPER SECTION END-->
+  <?php include('includes/footer.php');?>
+      <!-- FOOTER SECTION END-->
+    <!-- JAVASCRIPT FILES PLACED AT THE BOTTOM TO REDUCE THE LOADING TIME  -->
+    <!-- CORE JQUERY  -->
+    <script src="assets/js/jquery-1.10.2.js"></script>
+    <!-- BOOTSTRAP SCRIPTS  -->
+    <script src="assets/js/bootstrap.js"></script>
+      <!-- CUSTOM SCRIPTS  -->
+    <script src="assets/js/custom.js"></script>>
+
 </html>
 

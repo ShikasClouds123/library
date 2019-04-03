@@ -223,10 +223,10 @@ Issue a New Book
                                 <table class="table table-striped table-bordered table-hover" id="dataTables-example">
                                     <thead>
                                         <tr>
-                                            <th>#</th>
-										    <th>ISBN</th>
-                                            <th>Barcode</th>
-                                            <th>Callnumber</th>
+                      <th>#</th>
+										  <th>ISBN</th>
+                      <th>Barcode</th>
+                      <th>Callnumber</th>
 											<th>Title</th>
 											<th>Subtitle</th>
 											<th>Author</th>
@@ -267,6 +267,7 @@ foreach($results as $result)
 											<td class="center"><?php echo htmlentities($result->Subject_1);?></td>
 											<td class="center"><?php echo htmlentities($result->Location);?></td>
 											<td class="center"><?php echo htmlentities($result->Material);?></td>
+
                                                                                      
 											</td>
                                         </tr>
