@@ -30,11 +30,11 @@ else{?>
 	<link href="assets/css/animate.css" rel="stylesheet" />
 
 </head>
-<body>
+<body >
       <!------MENU SECTION START-->
 <?php include('includes/header.php');?>
 <!-- MENU SECTION END-->
-    <div class="content-wrapper">
+    <div class="content-wrapper" >
          <div class="container">
         <div class="row pad-botm">
             <div class="col-md-12">
