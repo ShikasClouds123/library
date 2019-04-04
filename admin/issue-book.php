@@ -151,7 +151,7 @@ error:function (){}
       <!------MENU SECTION START-->
 <?php include('includes/header.php');?>
 <!-- MENU SECTION END-->
-
+<div class="panel-heading">
     <div class="content-wrapper">
          <div class="container">
         <div class="row pad-botm">
@@ -161,6 +161,7 @@ error:function (){}
                             </div>
 
 </div>
+
 
 
 <div class="row">
@@ -209,18 +210,18 @@ Issue a New Book
 
                                     </form>
 									                            </div>
-
+</div>
 </div>
 									<!-- List of Available Books -->
 <div class="row">
                 <div class="col-md-12">
                 <div class="panel panel-default">
                 <div class="panel-heading">
-                          <center> List of Available books </center>
+                           List of Available books 
                 </div>
-                        
+                          
                             <div class="table-responsive">
-                              <div class="panel-body" style="overflow-x: auto;">
+                              <div class="panel-body" style="overflow-x: auto;" >
                                 <table class="table table-striped table-bordered table-hover" id="dataTables-example">
 
                                     <thead>

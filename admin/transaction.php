@@ -87,7 +87,7 @@ else{
                     <!-- Advanced Tables -->
                     <div class="panel panel-default">
                         <div class="panel-heading">
-                          Issued Books 
+                          Transaction Records 
                         </div>
                         <div class="panel-body">
                             <div class="table-responsive">
@@ -95,12 +95,12 @@ else{
                                     <thead>
                                         <tr>
                                             <th>#</th>
-                                            <th>ISBN</th>
-                                            <th>BarCode</th>
-                                            <th>Book Title</th>
                                             <th>Student Number</th>
                                             <th>Student Name</th>
+                                            <th>Barcode</th>
+                                            <th>Book Title</th>
                                             <th>Issued Date</th>
+                                            <th>Returned Date</th>
                                             <th>Due Date</th>
                                         </tr>
                                     </thead>
