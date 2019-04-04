@@ -204,9 +204,13 @@ Issue a New Book
 
  </div>
  
-
+        <script>
+function myFunction() {
+  alert("Book Added Successfully");
+}
+</script>
  
-<button type="submit" name="issue" id="submit" class="button"><span>Issue Book</span></button>
+<button type="submit" name="issue" id="submit" class="button" button onclick="myFunction()"><span>Issue Book</span></button>
 
                                     </form>
 									                            </div>
@@ -221,7 +225,7 @@ Issue a New Book
                 </div>
                           
                             <div class="table-responsive">
-                              <div class="panel-body" style="overflow-x: auto;" >
+                              <div class="panel-body" style="overflow:scroll;">
                                 <table class="table table-striped table-bordered table-hover" id="dataTables-example">
 
                                     <thead>
@@ -244,6 +248,7 @@ Issue a New Book
 											<th>Material</th>
 									 </thead>
                                     <tbody>
+
 <?php $sql = "SELECT * FROM librarybooks WHERE Status = 'I'";
 $query = $dbh -> prepare($sql);
 $query->execute();

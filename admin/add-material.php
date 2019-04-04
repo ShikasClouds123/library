@@ -121,7 +121,13 @@ Add new Material
 		<label>Type</label>
 		<input class="form-control" type="text" name="txtType" autocomplete="off" required />
 	</div>
-		<button type="submit" name="btnType" class="button"><span>Add Type</span></button>
+
+  <script>
+function myFunction() {
+  alert("Added New Material Successfully");
+}
+</script>
+		<button type="submit" name="btnType" class="button" button onclick="myFunction()"><span>Add Type</span></button>
 </form>
 </div>
 </div>

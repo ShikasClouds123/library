@@ -117,7 +117,12 @@ Year Level
 <label>Level</label>
 <input class="form-control" type="text" name="YearLevel" autocomplete="off" required />
 </div>
-<button type="submit" name="create" class="button"><span>Create </span></button>
+  <script>
+function myFunction() {
+  alert("Added YearLevel Successfully");
+}
+</script>
+<button type="submit" name="create" class="button" button onclick="myFunction()"><span>Create</span></button>
 
 </form>
                             </div>

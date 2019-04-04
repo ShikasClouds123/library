@@ -153,12 +153,17 @@ if(isset($_POST["submit"]))
                             </div>
 
         </div> 
+        <script>
+function myFunction() {
+  alert("Excel Added Successfully");
+}
+</script>
   <form method='POST' enctype='multipart/form-data'>
    <div align="center">  
     <label>Select CSV File to be Uploaded in the Database:</label>
     <p><input type='file' name='file'/></p>
 	<br>
-    <p><input type='submit' name='submit' value='Import'  class='button'/></p>
+    <p><input type='submit' name='submit' value='Import'  class='button' button onclick="myFunction()"/></p>
    </div>
    <br>
   </form>

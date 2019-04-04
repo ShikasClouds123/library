@@ -152,8 +152,12 @@ foreach($results as $result)
  <?php }} ?> 
 </select>
 </div>
-
-<button type="submit" name="add" class="button"><span>Add </span></button>
+<script>
+function myFunction() {
+  alert("Added New Copy Successfully");
+}
+</script>
+<button type="submit" name="add" class="button" button onclick="myFunction()"><span>Add</span></button>
 
 </form>
                             </div>

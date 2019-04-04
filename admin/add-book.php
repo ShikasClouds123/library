@@ -308,10 +308,16 @@ foreach($results as $result)
 <option value="<?php echo htmlentities($result->Type);?>">
 <?php echo htmlentities($result->Type);?></option>
  <?php }} ?> 
-</select>
-</div>
 
-<button type="submit" name="addbooks" id="submit" class="button"><span>Add</span></button>
+</select>
+
+</div>
+<script>
+function myFunction() {
+  alert("Book Listed Successfully");
+}
+</script>
+<button type="submit" name="addbooks" id="submit" class="button" button onclick="myFunction()"><span>Add</span></button>
 
 </form>
                             </div>
