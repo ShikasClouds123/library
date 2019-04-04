@@ -225,8 +225,8 @@ function myFunction() {
                 </div>
                           
                             <div class="table-responsive">
-                              <div class="panel-body" style="overflow:scroll;">
-                                <table class="table table-striped table-bordered table-hover" id="dataTables-example">
+                              <div class="panel-body" style="overflow:scroll;" >
+                <table class="table table-striped table-bordered table-hover" id="dataTables-example">
 
                                     <thead>
                                         <tr>
